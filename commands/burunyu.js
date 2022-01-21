@@ -1,7 +1,7 @@
 module.exports = {
     name: 'burunyu',
-    description: 'Simple test command',
+    description: 'Simple ping pong command',
     execute(message, args, client){
-        message.channel.send("nyu!")
+        message.reply("nyu!")
     }
 }
