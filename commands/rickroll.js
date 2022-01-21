@@ -6,6 +6,7 @@ module.exports ={
             const mentionedUser = message.mentions.members.first()
 
             if(!mentionedUser) return message.reply('You need to @ an user!')
+            if(mentionedUser.id === client.user.id) return message.reply ('You cannot make me rickroll myself! Doridoridoridori~')
 
             message.channel.send('What a devious rickroll... nya...')
 

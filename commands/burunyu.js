@@ -3,5 +3,6 @@ module.exports = {
     description: 'Simple ping pong command',
     execute(message, args, client){
         message.reply("nyu!")
+        
     }
 }
