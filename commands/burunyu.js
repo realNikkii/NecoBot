@@ -1,4 +1,7 @@
-client.on('message', message => {
-    if(!message.content.startWith(prefix) || message.author.bot) return;
-    const args = message.content .slice(prefix.length )
-})
+module.exports = {
+    name: 'burunyu',
+    description: 'Simple ping pong command',
+    execute(message, args, client){
+        message.reply("nyu!")
+    }
+}
