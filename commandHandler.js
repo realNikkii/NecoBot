@@ -38,7 +38,7 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
             client.commands.get('rickroll').execute(message, args, client)
             
         }
-        
+
         if(command === 'avatar'){
 
             client.commands.get('avatar').execute(message, args, client)
@@ -48,7 +48,7 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
             console.warn('Wrong User!')
             message.channel.send('You are not nikki...')
         }
-        else {
+        else if(command === 'shutdown' && message.author.id == 311891652925194242){
             client.commands.get('shutdown').execute(message, args, client)
         }
     })
