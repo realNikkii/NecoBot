@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const fs = require ('fs') //fs (file system) allows me to interact with directories and stuff
 
+require('dotenv').config()
+
 module.exports = (client) =>{ //Makes this whole thing exportable to index.js so it can be used there
     
     console.log('Going into commandHandler') //Just an info message
@@ -44,11 +46,23 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
             client.commands.get('avatar').execute(message, args, client)
         }
 
-        if(command === 'shutdown' && message.author.id != 311891652925194242){ //Big ass number is just my ID so I'm the only person that can ever execute this command, here it just looks if the person who sent the message does NOT have the same ID as me
+        if(command === 'coin'){
+
+            client.commands.get('coin').execute(message, args)
+
+        }
+
+        if(command === 'necogif'){
+
+            client.commands.get('necogif').execute(message, args)
+
+        }
+
+        if(command === 'shutdown' && message.author.id != process.env.ADMIN){ //Big ass number is just my ID so I'm the only person that can ever execute this command, here it just looks if the person who sent the message does NOT have the same ID as me
             console.warn('Wrong User!')
             message.channel.send('You are not nikki...')
         }
-        else if(command === 'shutdown' && message.author.id == 311891652925194242){
+        else if(command === 'shutdown' && message.author.id == process.env.ADMIN){
             client.commands.get('shutdown').execute(message, args, client)
         }
     })
