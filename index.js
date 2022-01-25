@@ -9,4 +9,5 @@ client.once('ready', () =>{
     console.log('Online') //Message that pops up in console to notify me that the bot is sucessfully running
 })
 
+
 client.login(process.env.TOKEN) //Bot logs into Discord with the provided Token found in .env

@@ -58,6 +58,17 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
 
         }
 
+        if(command === 'server'){
+
+            client.commands.get('server').execute(message, args)
+
+        }
+
+        if(command === 'image'){
+            
+            client.commands.get('image').execute(message, args, command)
+        }
+
         if(command === 'shutdown' && message.author.id != process.env.ADMIN){ //Big ass number is just my ID so I'm the only person that can ever execute this command, here it just looks if the person who sent the message does NOT have the same ID as me
             console.warn('Wrong User!')
             message.channel.send('You are not nikki...')
