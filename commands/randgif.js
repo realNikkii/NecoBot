@@ -9,11 +9,11 @@ const Tenor = require("tenorjs").client({
 })
 
 module.exports ={
-    name: 'necogif',
-    description: 'Displays a random Neco-Arc related gif from Tenor',
+    name: 'randgif',
+    description: 'Displays a random query gif from Tenor',
     execute(message, args, client){
 
-        
+        // const query = message.content.slice(8)
         
         Tenor.Search.Random('neco arc', '1').then(Results =>{
             Results.forEach(Post => {

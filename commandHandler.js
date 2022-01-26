@@ -29,52 +29,11 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
 
         */
 
-        if(command === 'buru'){ 
-
-            client.commands.get('burunyu').execute(message, args)
-    
+        if(client.commands.get(command).name === command){ 
+            client.commands.get(command).execute(message, args, client, command)
         }
-    
-        if(command === 'rickroll'){
-
-            client.commands.get('rickroll').execute(message, args, client)
-            
-        }
-
-        if(command === 'avatar'){
-
-            client.commands.get('avatar').execute(message, args, client)
-        }
-
-        if(command === 'coin'){
-
-            client.commands.get('coin').execute(message, args)
-
-        }
-
-        if(command === 'necogif'){
-
-            client.commands.get('necogif').execute(message, args)
-
-        }
-
-        if(command === 'server'){
-
-            client.commands.get('server').execute(message, args)
-
-        }
-
-        if(command === 'image'){
-            
-            client.commands.get('image').execute(message, args, command)
-        }
-
-        if(command === 'shutdown' && message.author.id != process.env.ADMIN){ //Big ass number is just my ID so I'm the only person that can ever execute this command, here it just looks if the person who sent the message does NOT have the same ID as me
-            console.warn('Wrong User!')
-            message.channel.send('You are not nikki...')
-        }
-        else if(command === 'shutdown' && message.author.id == process.env.ADMIN){
-            client.commands.get('shutdown').execute(message, args, client)
+        else{
+            console.log('No command under this name')
         }
     })
 }

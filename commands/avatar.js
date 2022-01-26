@@ -5,6 +5,8 @@ module.exports = {
     description: 'Gets your current Avatar, or if you mention someone, theirs',
     execute(message, args, client){
 
+        console.log('Going into avatar.js')
+
         const mentionedUser = message.mentions.members.first()
 
         if(!mentionedUser){
