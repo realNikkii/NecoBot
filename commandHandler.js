@@ -28,12 +28,15 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
           collection, wether or not a command under that name exists, if so, then it executes that with the given parameters (message, args, client), works surprisingly well,,,
 
         */
-
+        try{
         if(client.commands.get(command).name === command){ 
             client.commands.get(command).execute(message, args, client, command)
         }
         else{
             console.log('No command under this name')
         }
+    }catch(error){
+        message.channel.send('Fatal error occured! :warning:')
+    }
     })
 }

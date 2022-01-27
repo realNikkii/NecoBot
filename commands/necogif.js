@@ -12,9 +12,6 @@ module.exports ={
     name: 'necogif',
     description: 'Displays a random Neco-Arc related gif from Tenor',
     execute(message, args, client){
-
-        
-        
         Tenor.Search.Random('neco arc', '1').then(Results =>{
             Results.forEach(Post => {
                 message.channel.send(Post.itemurl)

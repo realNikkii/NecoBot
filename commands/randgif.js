@@ -13,9 +13,11 @@ module.exports ={
     description: 'Displays a random query gif from Tenor',
     execute(message, args, client){
 
-        // const query = message.content.slice(8)
+        console.log("Going into randgif.js")
+
+        const query = message.content.slice(8)
         
-        Tenor.Search.Random('neco arc', '1').then(Results =>{
+        Tenor.Search.Random(query, '1').then(Results =>{
             Results.forEach(Post => {
                 message.channel.send(Post.itemurl)
             })

@@ -11,7 +11,6 @@ module.exports = {
         message.channel.send('Shutting down... nya...').then(() =>{
              client.destroy()
          
-        
         })
     }
     }

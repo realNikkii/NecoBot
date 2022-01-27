@@ -11,7 +11,7 @@ module.exports ={
             message.channel.send('What a devious rickroll... nya...')
 
             client.users.fetch(mentionedUser.user.id).then(user => {
-                user.send('YOU JUST GOT RICKROLLED')
+                user.send('YOU JUST GOT RICKROLLED! :D')
                 user.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
             })
     }    
