@@ -3,6 +3,7 @@ const {MessageEmbed} = require("discord.js")
 module.exports = {
     name: 'avatar',
     description: 'Gets your current Avatar, or if you mention someone, theirs',
+    event: 'messageCreate',
     execute(message, args, client){
 
         console.log('Going into avatar.js')

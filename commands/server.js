@@ -4,6 +4,7 @@ const {MessageEmbed} = require('discord.js')
 module.exports ={
     name: 'server',
     description: 'Returns various infos about the Guild',
+    event: 'messageCreate',
     execute(message, args, client){
 
         console.log('Going into server.js')

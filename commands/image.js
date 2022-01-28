@@ -7,8 +7,9 @@ const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY)
 const options = {page:1}
 
 module.exports = {
-    name: 'google',
+    name: 'image',
     description: 'Searches in Google with the input of the user',
+    event: 'messageCreate',
     execute(message, args, client, command){
 
         const query = args.slice(command.length)
