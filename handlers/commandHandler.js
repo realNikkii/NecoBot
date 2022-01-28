@@ -13,7 +13,7 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
     
         const args = message.content.slice(prefix.length).split(/ +/) //Slices the message by the prefix length so we are left with just the message itself, splits it afterwards, saved into args
         const command = args.shift().toLowerCase() //command saved as the args shifted to lowercase so if you would type the command in all caps it'd be fine
-
+        
             if(!client.commands.get(command)) return
 
             else
@@ -21,7 +21,5 @@ module.exports = (client) =>{ //Makes this whole thing exportable to index.js so
                 client.commands.get(command).execute(message, args, client, command)
 
             }
-
-
     })
 }

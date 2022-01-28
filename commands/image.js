@@ -20,8 +20,9 @@ module.exports = {
 
         googleClient.search(query, options)
         .then(images => {
-        
-            console.log(images[0.])
+            
+            if(!images[0]) return message.reply('No search results found!')
+            console.log(images[0])
             const googleSearchEmbed = new MessageEmbed()
 
                 .setColor('RANDOM')

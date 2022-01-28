@@ -1,6 +1,6 @@
 const Discord = require("discord.js") //Allows me to use discord.js
 const client = new Discord.Client({ intents:["GUILDS", "GUILD_MESSAGES"]}) //Gets me the Discord Client, called just client in my code
-const commandHandler = require('./commandHandler')
+const commandHandler = require('./handlers/commandHandler')
 
 require('dotenv').config() //Need to import dotenv to use my TOKEN variable
 
