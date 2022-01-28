@@ -16,11 +16,11 @@ module.exports ={
 
         console.log("Going into randgif.js")
 
-        const query = message.content.slice(8)
+        const query = message.content.slice(10)
         
         Tenor.Search.Random(query, '1').then(Results =>{
             Results.forEach(Post => {
-                message.channel.send(Post.itemurl)
+                message.reply(Post.itemurl)
             })
         })
     }
