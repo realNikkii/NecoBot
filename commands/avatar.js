@@ -12,14 +12,16 @@ module.exports = {
 
         if(!mentionedUser){
         const profileEmbed = new MessageEmbed()
+                .setColor('RANDOM')
                 .setTitle('Profile Picture of ' + message.author.username)
                 .setDescription(message.author.displayAvatarURL())
                 .setImage(message.author.displayAvatarURL())
     
             message.reply({ embeds: [profileEmbed]})   
         }
-        if(typeof mentionedUser !== 'undefined'){
+        else if(typeof mentionedUser !== 'undefined'){
             const profileEmbed = new MessageEmbed()
+                .setColor('RANDOM')
                 .setTitle('Profile Picture of ' + mentionedUser.user.username)
                 .setDescription(mentionedUser.displayAvatarURL())
                 .setImage(mentionedUser.displayAvatarURL())

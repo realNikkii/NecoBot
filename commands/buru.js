@@ -1,8 +1,8 @@
 module.exports = {
-    name: 'burunyu',
+    name: 'buru',
     description: 'Simple ping pong command',
     event: 'messageCreate',
-    execute(message, args, client){
+    execute(message){
         message.reply("nyu!")
         
     }

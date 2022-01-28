@@ -2,7 +2,7 @@ module.exports ={
     name: 'coin',
     description: 'Flips a coin',
     event: 'messageCreate',
-    execute(message, args, clients){
+    execute(message){
         console.log('Going into coin.js') 
         const headOrTails = Math.round(Math.random())
 
