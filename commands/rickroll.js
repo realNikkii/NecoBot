@@ -3,7 +3,8 @@ module.exports ={
     description: 'Sends a pinged User a DM with a Rickroll (hilarious)',
     event: 'messageCreate',
     execute(message, args, client){
-        
+            console.log('Going into rickroll')
+
             const mentionedUser = message.mentions.members.first()
 
             if(!mentionedUser) return message.reply('You need to @ an user!')

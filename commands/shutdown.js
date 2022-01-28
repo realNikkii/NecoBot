@@ -6,6 +6,7 @@ module.exports = {
     event: 'messageCreate',
     execute(message, args, client){
         console.log('Going into shutdown.js')
+
         if(message.author != process.env.ADMIN){
             message.reply('Invalid user!')
         }

@@ -11,9 +11,9 @@ module.exports = {
     description: 'Searches in Google with the input of the user',
     event: 'messageCreate',
     execute(message, args, client, command){
+        console.log('Going into image')
 
         const query = message.content.slice(8)
-
         if(!query) return message.reply('You need to give me something to search for!')
 
         console.log(query)
@@ -32,6 +32,5 @@ module.exports = {
 
             message.reply({ embeds: [googleSearchEmbed]})
         })
-
     }
 }

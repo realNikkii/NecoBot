@@ -3,6 +3,7 @@ module.exports = {
     description: 'Makes it look like as if the bot said something',
     event: 'messageCreate',
     execute(message, args){
+        console.log('Going into say')
         
         const botSay = message.content.slice(6)
         const channel = message.channel

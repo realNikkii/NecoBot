@@ -6,10 +6,10 @@ module.exports ={
     description: 'Returns various infos about the Guild',
     event: 'messageCreate',
     execute(message, args, client){
-
         console.log('Going into server.js')
-       let guild = message.guild
-       if(guild.available){
+        
+        let guild = message.guild
+        if(guild.available){
 
         description = guild.description
 

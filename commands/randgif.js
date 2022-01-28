@@ -13,7 +13,6 @@ module.exports ={
     description: 'Displays a random query gif from Tenor',
     event: 'messageCreate',
     execute(message, args, client){
-
         console.log("Going into randgif.js")
 
         const query = message.content.slice(10)
