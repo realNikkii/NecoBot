@@ -1,5 +1,5 @@
 require('dotenv').config()
-const collectionHandler = require('../commandCollectionHandler') 
+const collectionHandler = require('./commandCollectionHandler') 
 
 module.exports = (client) =>{ //Makes this whole thing exportable to index.js so it can be used there
     
