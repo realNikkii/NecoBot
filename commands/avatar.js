@@ -4,7 +4,7 @@ module.exports = {
     name: 'avatar',
     description: 'Gets your current Avatar, or if you mention someone, theirs',
     event: 'messageCreate',
-    execute(message, args, client){
+    execute(message){
         console.log('Going into avatar.js')
 
         const mentionedUser = message.mentions.members.first()
@@ -27,6 +27,5 @@ module.exports = {
 
             message.reply({ embeds: [profileEmbed]})   
         }
-        
     }
 }

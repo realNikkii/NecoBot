@@ -4,8 +4,7 @@ module.exports ={
     name: 'info',
     description: 'Displays info about the message author, if someone is mentioned it shows their info instead',
     event: 'messageCreate',
-    
-    execute(message, args){
+    execute(message){
         console.log('Going into info')
 
         const mentionedUser = message.mentions.members.first()
