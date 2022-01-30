@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 
-module.exports.run = function DBConnect() {
+module.exports = function DBConnect() {
+
+    console.log('Going into DBConnect')
     
     mongoose.connect(process.env.MONGODB_SRV, {
     }).then(() =>{

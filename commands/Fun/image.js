@@ -10,7 +10,7 @@ module.exports = {
     name: 'image',
     description: 'Searches in Google with the input of the user',
     event: 'messageCreate',
-    execute(message, args, client, command){
+    execute(message){
         console.log('Going into image')
 
         const query = message.content.slice(8)

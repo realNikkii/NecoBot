@@ -5,7 +5,7 @@ module.exports ={
     name: 'server',
     description: 'Returns various infos about the Guild',
     event: 'messageCreate',
-    execute(message, args, client){
+    execute(message){
         console.log('Going into server.js')
         
         let guild = message.guild

@@ -2,7 +2,7 @@ module.exports ={
     name: 'rickroll',
     description: 'Sends a pinged User a DM with a Rickroll (hilarious)',
     event: 'messageCreate',
-    execute(message, args, client){
+    execute(message, client){
             console.log('Going into rickroll')
 
             const mentionedUser = message.mentions.members.first()
