@@ -8,13 +8,12 @@ module.exports ={
             const mentionedUser = message.mentions.members.first()
 
             if(!mentionedUser) return message.reply('You need to @ an user!')
-            if(mentionedUser.id === client.user.id) return message.reply ('You cannot make me rickroll myself! Doridoridoridori~')
+            if(mentionedUser.user.id === client.user.id) return message.reply ('You cannot make me rickroll myself! Doridoridoridori~')
 
-            message.channel.send('What a devious rickroll... nya...')
+            message.channel.send('What a devious rickroll... nya...');
 
-            client.users.fetch(mentionedUser.user.id).then(user => {
-                user.send('YOU JUST GOT RICKROLLED! :D')
-                user.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-            })
+            mentionedUser.user.send('YOU JUST GOT RICKROLLED! :D');
+            mentionedUser.user.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+
     }    
 }

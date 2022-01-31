@@ -3,13 +3,10 @@ const client = new Discord.Client({ intents:["GUILDS", "GUILD_MESSAGES"]}); //Ge
 
 require('dotenv').config(); //Need to import dotenv to use my TOKEN variable
 
-client.once('ready', () =>{
-
+    client.commands = new Discord.Collection(); //Makes a collection for my commands
     
-    ['connectDBHandler', 'collectionHandler', 'commandHandler'].forEach(handler =>{
+    [ 'connectDBHandler', 'commandHandler', 'eventHandler' ].forEach(handler =>{ //Removed connectDBHandler because I can't access it while not home :(
         require(`./handlers/${handler}`)(client, Discord);
     });
-    console.log('Online'); //Message that pops up in console to notify me that the bot is sucessfully running
-})
 
 client.login(process.env.TOKEN); //Bot logs into Discord with the provided Token found in .env

@@ -4,7 +4,7 @@ module.exports = {
     name: 'shutdown',
     description: 'Shuts down the bot',
     event: 'messageCreate',
-    execute(message, client){
+    execute(message, client, Discord){
         console.log('Going into shutdown.js')
 
         if(message.author != process.env.ADMIN){
