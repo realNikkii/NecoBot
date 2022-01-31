@@ -14,11 +14,11 @@ module.exports ={
     event: 'messageCreate',
 
     execute(message){
-        console.log('Going into necogif')
+        console.log('Going into necogif');
 
         Tenor.Search.Random('neco arc', '1').then(Results =>{
             Results.forEach(Post => {
-                message.channel.send(Post.itemurl)
+                message.channel.send(Post.itemurl);
             })
         })
     }

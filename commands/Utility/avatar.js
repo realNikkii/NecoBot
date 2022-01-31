@@ -5,9 +5,9 @@ module.exports = {
     description: 'Gets your current Avatar, or if you mention someone, theirs',
     event: 'messageCreate',
     execute(message){
-        console.log('Going into avatar.js')
+        console.log('Going into avatar.js');
 
-        const mentionedUser = message.mentions.members.first()
+        const mentionedUser = message.mentions.members.first();
 
         if(!mentionedUser){
         const profileEmbed = new MessageEmbed()
@@ -16,7 +16,7 @@ module.exports = {
                 .setDescription(message.author.displayAvatarURL())
                 .setImage(message.author.displayAvatarURL())
     
-            message.reply({ embeds: [profileEmbed]})   
+            message.reply({ embeds: [profileEmbed]});   
         }
         else if(typeof mentionedUser !== 'undefined'){
             const profileEmbed = new MessageEmbed()
@@ -25,7 +25,7 @@ module.exports = {
                 .setDescription(mentionedUser.displayAvatarURL())
                 .setImage(mentionedUser.displayAvatarURL())
 
-            message.reply({ embeds: [profileEmbed]})   
+            message.reply({ embeds: [profileEmbed]});   
         }
     }
 }

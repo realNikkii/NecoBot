@@ -7,7 +7,7 @@ module.exports ={
     execute(message){
         console.log('Going into info')
 
-        const mentionedUser = message.mentions.members.first()
+        const mentionedUser = message.mentions.members.first();
 
         if(!mentionedUser){
             
@@ -22,7 +22,7 @@ module.exports ={
                 {name: 'Account creation date', value: `${message.author.createdAt}`}
 
             )
-            message.reply({embeds: [infoEmbedAuthor]})
+            message.reply({embeds: [infoEmbedAuthor]});
         }
         else if(typeof mentionedUser !== 'undefined'){
             infoEmbedMention = new MessageEmbed()
@@ -37,7 +37,7 @@ module.exports ={
 
             )
 
-            message.reply({embeds: [infoEmbedMention]})
+            message.reply({embeds: [infoEmbedMention]});
 
         }
     }
