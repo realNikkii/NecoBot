@@ -14,4 +14,3 @@ Eventually, you will have to configure all of the environment variables used in 
 Burunyu.
 
 ![image](https://user-images.githubusercontent.com/61980076/151614451-56eb19d4-5e7a-4f9c-a05d-e7837e98ecc7.png)
-

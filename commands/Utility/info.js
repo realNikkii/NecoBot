@@ -4,9 +4,10 @@ module.exports ={
     name: 'info',
     description: 'Displays info about the message author, if someone is mentioned it shows their info instead',
     event: 'messageCreate',
-    execute(message, args){
+    execute(message){
+        console.log('Going into info.js');
 
-        const mentionedUser = message.mentions.members.first()
+        const mentionedUser = message.mentions.members.first();
 
         if(!mentionedUser){
             
@@ -21,7 +22,7 @@ module.exports ={
                 {name: 'Account creation date', value: `${message.author.createdAt}`}
 
             )
-            message.reply({embeds: [infoEmbedAuthor]})
+            message.reply({embeds: [infoEmbedAuthor]});
         }
         else if(typeof mentionedUser !== 'undefined'){
             infoEmbedMention = new MessageEmbed()
@@ -36,7 +37,7 @@ module.exports ={
 
             )
 
-            message.reply({embeds: [infoEmbedMention]})
+            message.reply({embeds: [infoEmbedMention]});
 
         }
     }

@@ -2,8 +2,9 @@ module.exports = {
     name: 'buru',
     description: 'Simple ping pong command',
     event: 'messageCreate',
+
     execute(message){
-        message.reply("nyu!")
-        
+        console.log('Going into buru.js');
+        message.reply("nyu!");
     }
 }

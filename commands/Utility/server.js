@@ -5,16 +5,16 @@ module.exports ={
     name: 'server',
     description: 'Returns various infos about the Guild',
     event: 'messageCreate',
-    execute(message, args, client){
-
+    execute(message){
         console.log('Going into server.js')
-       let guild = message.guild
-       if(guild.available){
+        
+        let guild = message.guild;
+        if(guild.available){
 
-        description = guild.description
+        description = guild.description;
 
         if(guild.description === null){
-            description = 'No description set'
+            description = 'No description set';
         }
             const serverEmbed = new MessageEmbed()
              .setColor('RANDOM')
@@ -30,7 +30,7 @@ module.exports ={
                 message.reply({embeds: [serverEmbed]})
            }
            else{
-               console.log('Cannot get response from server!')
+               console.log('Cannot get response from server!');
            }
         }
 }
