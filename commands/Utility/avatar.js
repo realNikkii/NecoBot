@@ -18,7 +18,7 @@ module.exports = {
     
             message.reply({ embeds: [profileEmbed]});   
         }
-        else if(typeof mentionedUser !== 'undefined'){
+        else if(typeof mentionedUser !== 'undefined'){ 
             const profileEmbed = new MessageEmbed()
                 .setColor('RANDOM')
                 .setTitle('Profile Picture of ' + mentionedUser.user.username)

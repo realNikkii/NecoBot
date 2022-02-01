@@ -14,7 +14,7 @@ module.exports ={
     event: 'messageCreate',
 
     execute(message){
-        console.log('Going into necogif');
+        console.log('Going into necogif.js');
 
         Tenor.Search.Random('neco arc', '1').then(Results =>{
             Results.forEach(Post => {

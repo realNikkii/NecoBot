@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = (client, Discord) =>{
-console.log('Going into eventCollection')
+console.log('Going into eventCollection.js');
     const loadEventDirs = (dirs) => {
 
         const eventFiles = fs.readdirSync(path.join(__dirname, `../events/${dirs}`)).filter(file => file.endsWith('.js'));
@@ -15,7 +15,7 @@ console.log('Going into eventCollection')
             
         }
 
-        console.log(`Done with collection for directory ${dirs}`)
+        console.log(`Done with collection for directory ${dirs}`);
 
     }
 

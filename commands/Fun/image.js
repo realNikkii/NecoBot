@@ -12,14 +12,13 @@ module.exports = {
     event: 'messageCreate',
     execute(message){
         console.log('Going into image.js');
-
         const query = message.content.slice(8);
         if(!query) return message.reply('You need to give me something to search for!');
 
         console.log(query);
 
         googleClient.search(query, options).then(images => {
-            
+            //TODO: Add buttons that show the next image on the page, and one to go to a previous image
             if(!images[0]) return message.reply('No search results found!');
             console.log(images[0]);
             const googleSearchEmbed = new MessageEmbed()
