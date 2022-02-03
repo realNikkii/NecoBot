@@ -11,7 +11,7 @@ console.log('Going into eventCollection.js');
 
             const event = require(path.join(__dirname, `../events/${dirs}/${file}`));
 
-            client.on(event.name, (...args) => event.execute(...args, client, Discord));         
+            client.on(event.name, (...args) => event.execute(...args, client, Discord));      
             
         }
 

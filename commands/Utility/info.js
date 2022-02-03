@@ -10,35 +10,24 @@ module.exports ={
         const mentionedUser = message.mentions.members.first();
 
         if(!mentionedUser){
+
+            user = message.author;
+
+        }else{
+            user = mentionedUser.user
+        }
             
             infoEmbedAuthor = new MessageEmbed()
             .setColor('RANDOM')
-            .setTitle(`Info about user ${message.author.username}`)
-            .setThumbnail(message.author.avatarURL())
+            .setTitle(`Info about user ${user.username}`)
+            .setThumbnail(user.avatarURL())
             .addFields(
-                {name: 'Username', value: `${message.author.username}`},
-                {name: 'Tag', value: `${message.author.tag}`},
-                {name: 'ID', value: `${message.author.id}`},
-                {name: 'Account creation date', value: `${message.author.createdAt}`}
+                {name: 'Username', value: `${user.username}`},
+                {name: 'Tag', value: `${user.tag}`},
+                {name: 'ID', value: `${user.id}`},
+                {name: 'Account creation date', value: `${user.createdAt}`}
 
             )
             message.reply({embeds: [infoEmbedAuthor]});
-        }
-        else if(typeof mentionedUser !== 'undefined'){
-            infoEmbedMention = new MessageEmbed()
-            .setColor('RANDOM')
-            .setTitle(`Info about user ${mentionedUser.user.username}`)
-            .setThumbnail(mentionedUser.user.avatarURL())
-            .addFields(
-                {name: 'Username', value: `${mentionedUser.user.username}`},
-                {name: 'Tag', value: `${mentionedUser.user.tag}`},
-                {name: 'ID', value: `${mentionedUser.id}`},
-                {name: 'Account creation date', value: `${mentionedUser.user.createdAt}`}
-
-            )
-
-            message.reply({embeds: [infoEmbedMention]});
-
-        }
     }
 }

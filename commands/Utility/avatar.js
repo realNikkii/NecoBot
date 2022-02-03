@@ -10,22 +10,18 @@ module.exports = {
         const mentionedUser = message.mentions.members.first();
 
         if(!mentionedUser){
+
+            user = message.author;
+
+        }else{
+            user = mentionedUser.user
+        }
         const profileEmbed = new MessageEmbed()
                 .setColor('RANDOM')
-                .setTitle('Profile Picture of ' + message.author.username)
-                .setDescription(message.author.displayAvatarURL())
-                .setImage(message.author.displayAvatarURL())
+                .setTitle('Profile Picture of ' + user.username)
+                .setDescription(user.displayAvatarURL())
+                .setImage(user.displayAvatarURL())
     
             message.reply({ embeds: [profileEmbed]});   
-        }
-        else if(typeof mentionedUser !== 'undefined'){ 
-            const profileEmbed = new MessageEmbed()
-                .setColor('RANDOM')
-                .setTitle('Profile Picture of ' + mentionedUser.user.username)
-                .setDescription(mentionedUser.displayAvatarURL())
-                .setImage(mentionedUser.displayAvatarURL())
-
-            message.reply({ embeds: [profileEmbed]});   
-        }
     }
 }

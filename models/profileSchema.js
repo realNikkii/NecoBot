@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-    userID: { type: String, require: true, unique},
-    serverID: { type: String, require: true},
+    userID: { type: String, require: true, unique: true},
     level: { type: Number, default: 1},
     experience: { type: Number},
     necoCoins: { type: Number, default: 500}
