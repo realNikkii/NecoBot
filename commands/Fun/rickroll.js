@@ -12,17 +12,23 @@ module.exports = {
 
         message.channel.send('What a devious rickroll... nya...');
 
-
+    // Spaghetti code :/
         if (Math.floor(Math.random() * 100) > 5) {
 
-            mentionedUser.user.send('YOU JUST GOT RICKROLLED! :D');
-            mentionedUser.user.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+            mentionedUser.user.send('YOU JUST GOT RICKROLLED! :D\n https://www.youtube.com/watch?v=dQw4w9WgXcQ').catch(() =>{
+                
+                message.reply('GUBEH! I cannot send messages to this user!');
 
+            })
+            
         } else {
 
             message.channel.send('Uh oh... seems like it backfired... nya');
-            message.author.send('YOU ACTUALLY GET RICKROLLED INSTEAD!!!');
-            message.author.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+            message.author.send('YOU ACTUALLY GET RICKROLLED INSTEAD!!!\n https://www.youtube.com/watch?v=dQw4w9WgXcQ').catch(()=>{
+
+                message.reply('GUBEH! I cannot send messages to this user!');
+
+            })
 
         }
 

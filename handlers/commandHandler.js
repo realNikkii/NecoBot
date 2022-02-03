@@ -22,5 +22,5 @@ module.exports = (client, Discord) =>{
         console.log(client.commands)    
     }
     
-    ['admin', 'fun', 'utility'].forEach(e => loadCommandDirs(e));
+    ['admin', 'economy', 'fun', 'utility'].forEach(e => loadCommandDirs(e));
 }
