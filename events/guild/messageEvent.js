@@ -3,7 +3,6 @@ const functions = require('../../functions')
 module.exports ={
     name: 'messageCreate',
     once: 'false',
-    description: 'Callback to when a message is created in a Guild',
     async execute(message, client){
 
         const prefix = 'b!';

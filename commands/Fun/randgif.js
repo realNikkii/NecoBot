@@ -26,7 +26,7 @@ module.exports ={
 
                 const randGifEmbed = new MessageEmbed()
                     .setColor('RANDOM')
-                    .setDescription(`Random gif for ${query}`)
+                    .setDescription(`Random gif for "${query}"`)
                     .setImage(Post.media[0].gif.url)
 
                 message.reply({ embeds: [randGifEmbed] });

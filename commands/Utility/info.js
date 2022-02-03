@@ -14,6 +14,7 @@ module.exports ={
             user = message.author;
 
         }else{
+            
             user = mentionedUser.user
         }
             
