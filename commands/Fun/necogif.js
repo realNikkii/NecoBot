@@ -10,8 +10,8 @@ const Tenor = require("tenorjs").client({
 
 module.exports ={
     name: 'necogif',
-    description: 'Displays a random Neco-Arc related gif from Tenor',
-    event: 'messageCreate',
+    description: 'Displays a random Neco-Arc related gif from Tenor.',
+    usage: '`b!necogif`',
 
     execute(message){
         console.log('Going into necogif.js');

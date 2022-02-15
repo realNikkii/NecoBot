@@ -3,7 +3,7 @@ const profileModel = require('../../models/profileSchema');
 module.exports = {
     name: 'steal',
     description: 'Steal from random civillians, how fun!',
-    event: 'messageCreate',
+    usage: '`b!steal`',
     async execute(message){
 
         const stolenMoney = Math.floor(Math.random() * 500) + 1;

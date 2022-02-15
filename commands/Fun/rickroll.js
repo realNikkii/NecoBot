@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 module.exports = {
     name: 'rickroll',
-    description: 'Sends a pinged User a DM with a Rickroll (hilarious)',
-    event: 'messageCreate',
+    description: 'Sends a pinged User a DM with a Rickroll (hilarious).',
+    usage: '`b!rickroll <user>`',
     async execute(message, client){
         console.log('Going into rickroll.js');
 

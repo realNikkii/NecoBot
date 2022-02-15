@@ -3,8 +3,8 @@ const functions = require('../../functions');
 
 module.exports = {
     name: 'balance',
-    description: 'Checks your current balance',
-    event: 'messageCreate',
+    description: 'Checks your current balance.',
+    usage: '`b!balance [user]`',
     async execute(message){
         console.log('Going into balance.js');
 

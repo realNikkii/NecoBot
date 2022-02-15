@@ -1,8 +1,7 @@
 module.exports ={
     name: 'coin',
-    description: 'Flips a coin',
-    event: 'messageCreate',
-
+    description: 'Flips a coin.',
+    usage: '`b!coin`',
     execute(message){
         console.log('Going into coin.js'); 
         const headOrTails = Math.round(Math.random());
