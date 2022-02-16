@@ -3,8 +3,9 @@ const client = new Discord.Client( { intents:['GUILDS', 'GUILD_MESSAGES']} ); //
 
 require('dotenv').config(); //Need to import dotenv to use my TOKEN variable
 
-    client.commands = new Discord.Collection(); //Makes a collection for my commands
-    
+    client.userCooldowns = new Set();
+    client.commands = new Discord.Collection();
+
     [ 'connectDBHandler', 'commandHandler', 'eventHandler' ].forEach(handler => {
         require(`./handlers/${handler}`)(client, Discord);
     });

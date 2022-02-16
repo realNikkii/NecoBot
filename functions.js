@@ -19,6 +19,5 @@ module.exports = {
         };
         
         return discordUserDBProfile;
-
-    }
+    }, 
 }

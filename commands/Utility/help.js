@@ -4,6 +4,7 @@ module.exports={
     name: 'help',
     description: 'Displays all available commands and their description.',
     usage: '`b!help [command]`',
+    cooldown: 0,
     execute(message, client){
         
         const commandArrayFull = Array.from(client.commands.values());

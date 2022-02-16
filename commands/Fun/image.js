@@ -10,6 +10,7 @@ module.exports = {
     name: 'image',
     description: 'Searches in Google with the input of the user.',
     usage: '`b!image <query>`',
+    cooldown: 0,
     async execute(message){
 
         console.log('Going into image.js');

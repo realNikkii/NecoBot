@@ -4,6 +4,7 @@ module.exports = {
     name: 'rickroll',
     description: 'Sends a pinged User a DM with a Rickroll (hilarious).',
     usage: '`b!rickroll <user>`',
+    cooldown: 0,
     async execute(message, client){
         console.log('Going into rickroll.js');
 

@@ -4,6 +4,7 @@ module.exports ={
     name: 'info',
     description: 'Displays info about the message author, if someone is mentioned it shows their info instead.',
     usage: '`b!info [user]`',
+    cooldown: 0,
     execute(message){
         console.log('Going into info.js');
 

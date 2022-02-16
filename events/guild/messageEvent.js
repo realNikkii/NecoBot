@@ -7,7 +7,7 @@ module.exports ={
     once: 'false',
     async execute(message, client){
 
-    if(!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
+        if(!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
 
         profileData = await functions.checkDBProfileExists(message.author.id);
     
@@ -16,10 +16,23 @@ module.exports ={
 
         if(!client.commands.get(command)) return;
 
-        else{
+        const commandOnCooldownID = `${message.author.id}.${command}`; //Unique string consisting of the users discord id and command name, seperated by a string
+
+        if(!client.userCooldowns.has(commandOnCooldownID)){
 
             client.commands.get(command).execute(message, client, args, command, profileData);
+            client.userCooldowns.add(commandOnCooldownID);
 
+            setTimeout(() =>{
+
+                client.userCooldowns.delete(commandOnCooldownID);
+
+            }, client.commands.get(command).cooldown * 1000);
+
+        } else {
+
+            message.reply(`You need to wait ${client.commands.get(command).cooldown} seconds to execute ${client.commands.get(command).name}, bibibi...`);
+            
         }
     }
 }

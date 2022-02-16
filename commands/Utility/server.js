@@ -5,6 +5,7 @@ module.exports ={
     name: 'server',
     description: 'Returns various infos about the Guild.',
     usage: '`b!server`',
+    cooldown: 0,
     execute(message){
         console.log('Going into server.js')
         

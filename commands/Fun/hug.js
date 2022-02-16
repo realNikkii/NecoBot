@@ -14,6 +14,7 @@ module.exports ={
     name: 'hug',
     description: 'Hug someone!',
     usage: '`b!hug <user>`',
+    cooldown: 0,
     execute(message){
         
         mentionedUser = message.mentions.users.first();

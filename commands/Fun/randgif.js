@@ -14,6 +14,7 @@ module.exports ={
     name: 'randgif',
     description: 'Displays a random query gif from Tenor.',
     usage: '`b!randgif <query>`',
+    cooldown: 0,
     execute(message){
         console.log("Going into randgif.js")
 

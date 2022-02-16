@@ -4,6 +4,7 @@ module.exports = {
     name: 'avatar',
     description: 'Gets your current Avatar, or if you mention someone, theirs.',
     usage: '`b!avatar [user]`',
+    cooldown: 0,
     execute(message){
         console.log('Going into avatar.js');
 
