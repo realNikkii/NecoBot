@@ -17,6 +17,8 @@ module.exports = (client) =>{
             }
             
         } 
+        
+        console.log(`Done with collection for directory ${dirs}`);
     }
     
     ['admin', 'economy', 'fun', 'utility'].forEach(e => loadCommandDirs(e));
