@@ -2,8 +2,9 @@ require('dotenv').config();
 
 module.exports = {
     name: 'shutdown',
-    description: 'Shuts down the bot',
-    event: 'messageCreate',
+    description: 'Shuts down the bot. Can only be used by the user with id set in ADMIN.',
+    usage: '`b!shutdown`',
+    cooldown: 0,
     execute(message, client){
         console.log('Going into shutdown.js');
 

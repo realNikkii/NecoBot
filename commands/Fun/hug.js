@@ -13,7 +13,8 @@ const Tenor = require("tenorjs").client({
 module.exports ={
     name: 'hug',
     description: 'Hug someone!',
-    event: 'messageEvent',
+    usage: '`b!hug <user>`',
+    cooldown: 0,
     execute(message){
         
         mentionedUser = message.mentions.users.first();
@@ -32,8 +33,5 @@ module.exports ={
                 message.channel.send({ embeds: [hugEmbed] });
             })
         })
-        
-        
-
     }
 }

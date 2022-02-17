@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = (client, Discord) =>{
+module.exports = (client) =>{
  
     console.log('Going into commandCollection');
 
@@ -16,10 +16,7 @@ module.exports = (client, Discord) =>{
                 client.commands.set(command.name, command);
             }
             
-        }
-
-        console.log(`Done with collection for directory ${dirs}`);
-        console.log(client.commands)    
+        } 
     }
     
     ['admin', 'economy', 'fun', 'utility'].forEach(e => loadCommandDirs(e));
