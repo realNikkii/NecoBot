@@ -19,12 +19,10 @@ module.exports = {
         
         if(!query) return message.reply('You need to give me something to search for!');
 
-        console.log(query);
-
         googleClient.search(query, {page:1}).then(images => {
             //TODO: Add buttons that show the next image on the page, and one to go to a previous image
             if(!images[0]) return message.reply('No search results found!');
-            console.log(images[0]);
+            
             const googleSearchEmbed = new MessageEmbed()
                 .setColor('RANDOM')
                 .setImage(images[0].url)

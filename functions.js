@@ -1,6 +1,6 @@
 const profileModel = require('./models/profileSchema');
 
-module.exports = {
+module.exports={
 
     async checkDBProfileExists(discordUserID){
 
@@ -16,7 +16,7 @@ module.exports = {
 
             discordUserDBProfile = profile;
             profile.save();
-        };
+        }
         
         return discordUserDBProfile;
     }, 
