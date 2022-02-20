@@ -10,7 +10,7 @@ module.exports = {
 		const commandArrayFull = Array.from(client.commands.values());
 		const commandArrayNames = new Array(commandArrayFull.length);
 
-		const helpQuery = message.content.slice(7);
+		const helpQuery = message.content.slice(this.name.length + 3);
 
 		if (!helpQuery) {
 
@@ -33,12 +33,19 @@ module.exports = {
 
 			if (!client.commands.get(helpQuery)) return message.reply('No command under that name, GUBEH!');
 
+			let commandAlias = client.commands.get(helpQuery).aliases;
+
+			if(!commandAlias){
+				commandAlias = 'None';
+			}
+
 			const helpEmbedDescription = new MessageEmbed()
 				.setTitle(`Information about ${client.commands.get(helpQuery).name}`)
 				.setColor('RANDOM')
 				.addFields(
 					{ name: 'Description', value: `${client.commands.get(helpQuery).description}` },
 					{ name: 'Usage', value: `${client.commands.get(helpQuery).usage}` },
+					{ name: 'Aliases', value: '`' + commandAlias + '`'}
 				)
 				.setFooter(
 					{ text: 'Optional parameters are marked with []\nRequired parameters are marked with <>' },

@@ -7,7 +7,7 @@ module.exports = {
 	cooldown: 60,
 	async execute(message) {
 
-		const stolenMoney = Math.floor(Math.random() * 500) + 1;
+		const stolenMoney = Math.floor(Math.random() * 200) + 1;
 
 		await profileModel.findOneAndUpdate({
 			userID: message.author.id,

@@ -4,6 +4,7 @@ const functions = require('../../functions');
 module.exports = {
 	name: 'balance',
 	description: 'Checks your current balance.',
+	aliases: 'bal',
 	usage: '`b!balance [user]`',
 	cooldown: 0,
 	async execute(message) {

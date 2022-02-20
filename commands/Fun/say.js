@@ -6,7 +6,7 @@ module.exports = {
 	execute(message) {
 		console.log('Going into say.js');
 
-		const botSay = message.content.slice(6);
+		const botSay = message.content.substring(message.content.indexOf('y') + 2);
 		if (!botSay) return message.reply('C\'mon you need to give me something to say, burunyu!');
 		const channel = message.channel;
 
