@@ -1,5 +1,5 @@
 .env
 node_modules
-eslint
+.eslintrc.json
 config.json
 gaydar.js

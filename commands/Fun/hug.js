@@ -1,37 +1,35 @@
 require('dotenv').config();
 
-const { MessageEmbed } = require('discord.js'); 
+const { MessageEmbed } = require('discord.js');
 
-const Tenor = require("tenorjs").client({
-    'Key': process.env.TENOR_KEY,
-    'Filter': 'off',
-    'Locale': 'en_US',
-    'MediaFilter': 'minimal',
-    'DateFormat': 'D/MM/YYYY - H:mm:ss A'
-})
+const Tenor = require('tenorjs').client({
+	'Key': process.env.TENOR_KEY,
+	'Filter': 'off',
+	'Locale': 'en_US',
+	'MediaFilter': 'minimal',
+	'DateFormat': 'D/MM/YYYY - H:mm:ss A',
+});
 
-module.exports ={
-    name: 'hug',
-    description: 'Hug someone!',
-    usage: '`b!hug <user>`',
-    cooldown: 0,
-    execute(message){
-        
-        mentionedUser = message.mentions.users.first();
+module.exports = {
+	name: 'hug',
+	description: 'Hug someone!',
+	usage: '`b!hug <user>`',
+	cooldown: 0,
+	execute(message) {
 
-        const huggedUser = message.content.slice(6);
+		const huggedUser = message.content.slice(6);
 
-        if(!huggedUser) return message.reply('What, you wanna hug yourself, nya?');
+		if (!huggedUser) return message.reply('What, you wanna hug yourself, nya?');
 
-        Tenor.Search.Random('anime hug', '1').then(Results =>{
-            Results.forEach(Post =>{
-                const hugEmbed = new MessageEmbed()
-                    .setColor('RANDOM')
-                    .setDescription(`${message.author.username} hugs ${huggedUser}! How wholesome... nya`)
-                    .setImage(Post.media[0].gif.url)
+		Tenor.Search.Random('anime hug', '1').then(Results => {
+			Results.forEach(Post => {
+				const hugEmbed = new MessageEmbed()
+					.setColor('RANDOM')
+					.setDescription(`${message.author.username} hugs ${huggedUser}! How wholesome... nya`)
+					.setImage(Post.media[0].gif.url);
 
-                message.channel.send({ embeds: [hugEmbed] });
-            })
-        })
-    }
-}
+				message.channel.send({ embeds: [hugEmbed] });
+			});
+		});
+	},
+};

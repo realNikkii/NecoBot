@@ -2,44 +2,44 @@ const functions = require('../../functions');
 const profileModel = require('../../models/profileSchema');
 
 module.exports = {
-    name: 'give',
-    description: 'Transfer necoCoins to another user.',
-    usage: '`b!give <user> <+amount>`',
-    cooldown: 0,        
-    async execute(message){
-        
-        const mentionedUser = message.mentions.members.first();
-        const giveAmount = Number.parseInt(message.content.substring(message.content.indexOf('>') + 1 ));
+	name: 'give',
+	description: 'Transfer necoCoins to another user.',
+	usage: '`b!give <user> <+amount>`',
+	cooldown: 0,
+	async execute(message) {
 
-        if(!mentionedUser || !giveAmount || Math.sign(giveAmount) == -1 || typeof giveAmount != 'number') return message.reply(`You use the command like this: ${this.usage} nya!`);
+		const mentionedUser = message.mentions.members.first();
+		const giveAmount = Number.parseInt(message.content.substring(message.content.indexOf('>') + 1));
 
-        const authorProfile = await profileModel.findOne({ userID: message.author.id });
-        
-        if(authorProfile.necoCoins < giveAmount) return message.reply(`You don't own that many necoCoins... muda muda...`);
-             
-        await profileModel.findOneAndUpdate({ //Profile of the message author
-             userID: message.author.id,
-         },  {
-             $inc: {
-                 necoCoins: -giveAmount,
-             },
-         }
-         ).catch((err) =>{
-             message.channel.send(`A fatal error occured: ${err}`);
-         });     
-         
-        await functions.checkDBProfileExists(mentionedUser.user.id)
+		if (!mentionedUser || !giveAmount || Math.sign(giveAmount) == -1 || typeof giveAmount != 'number') return message.reply(`You use the command like this: ${this.usage} nya!`);
 
-        await profileModel.findOneAndUpdate({ //Profile of the mentioned user
-             userID: mentionedUser.user.id,
-         },  {
-             $inc: {
-                 necoCoins: giveAmount,
-             },
-         }
-         );
+		const authorProfile = await profileModel.findOne({ userID: message.author.id });
 
-         message.reply(`You gave ${mentionedUser.user.username} ${giveAmount} necoCoins!`);
+		if (authorProfile.necoCoins < giveAmount) return message.reply('You don\'t own that many necoCoins... muda muda...');
+		// Profile of the message author
+		await profileModel.findOneAndUpdate({
+			userID: message.author.id,
+		}, {
+			$inc: {
+				necoCoins: -giveAmount,
+			},
+		},
+		).catch((err) => {
+			message.channel.send(`A fatal error occured: ${err}`);
+		});
 
-    }
-}
+		await functions.checkDBProfileExists(mentionedUser.user.id);
+		// Profile of the mentioned user
+		await profileModel.findOneAndUpdate({
+			userID: mentionedUser.user.id,
+		}, {
+			$inc: {
+				necoCoins: giveAmount,
+			},
+		},
+		);
+
+		message.reply(`You gave ${mentionedUser.user.username} ${giveAmount} necoCoins!`);
+
+	},
+};
