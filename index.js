@@ -1,13 +1,14 @@
-const Discord = require('discord.js');
-const client = new Discord.Client( { intents:['GUILDS', 'GUILD_MESSAGES']} ); //Gets me the Discord Client, called just client in my code
+const { Client, Collection } = require('discord.js');
+const client = new Client({ intents:['GUILDS', 'GUILD_MESSAGES'] }); // Instatiates new client (bot) with intents
 
-require('dotenv').config(); //Need to import dotenv to use my TOKEN variable
+require('dotenv').config(); // Enviroment variables
 
-    client.userCooldowns = new Set();
-    client.commands = new Discord.Collection();
+client.userCooldowns = new Set(); // Set for cooldowns and collection for commands
+client.aliases = new Collection();
+client.commands = new Collection();
 
-    [ 'connectDBHandler', 'commandHandler', 'eventHandler' ].forEach(handler => {
-        require(`./handlers/${handler}`)(client, Discord);
-    });
+[ 'connectDBHandler', 'commandHandler', 'eventHandler' ].forEach(handler => { // Requires of all handlers
+	require(`./handlers/${handler}`)(client);
+});
 
-client.login(process.env.TOKEN); //Bot logs into Discord with the provided Token found in .env
+client.login(process.env.TOKEN); // Bot logs into discord using TOKEN from enviroment variables

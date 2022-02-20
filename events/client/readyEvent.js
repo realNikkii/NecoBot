@@ -1,7 +1,7 @@
-module.exports ={
-    name: 'ready',
-    once: 'true',
-    execute(){
-        console.log('Online!');
-    }
-}
+module.exports = {
+	name: 'ready',
+	once: 'true',
+	execute() {
+		console.log('Online!');
+	},
+};

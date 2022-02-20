@@ -1,48 +1,56 @@
 const { MessageEmbed } = require('discord.js');
 
-module.exports={
-    name: 'help',
-    description: 'Displays all available commands and their description.',
-    usage: '`b!help [command]`',
-    cooldown: 0,
-    execute(message, client){
-        
-        const commandArrayFull = Array.from(client.commands.values());
-        const commandArrayNames = new Array(commandArrayFull.length);
+module.exports = {
+	name: 'help',
+	description: 'Displays all available commands and their description.',
+	usage: '`b!help [command]`',
+	cooldown: 0,
+	execute(message, client) {
 
-        const helpQuery = message.content.slice(7);
+		const commandArrayFull = Array.from(client.commands.values());
+		const commandArrayNames = new Array(commandArrayFull.length);
 
-        if(!helpQuery){
+		const helpQuery = message.content.slice(this.name.length + 3);
 
-                for(let i = 0; i < commandArrayFull.length; ++i){
+		if (!helpQuery) {
 
-                    commandArrayNames[i] = commandArrayFull[i].name;
+			for (let i = 0; i < commandArrayFull.length; ++i) {
 
-                }
+				commandArrayNames[i] = commandArrayFull[i].name;
 
-            const helpEmbedNames = new MessageEmbed()
-            .setTitle('All Neco-Bot commands')
-            .setColor('RANDOM')
-            .setDescription('You can use b!help <command> on any existing command to get up-to-date help on it, nya!')
-            .addField('Commands', '`' + commandArrayNames.join(', ') + '`', true)
+			}
 
-            message.reply({ embeds: [helpEmbedNames] });
+			const helpEmbedNames = new MessageEmbed()
+				.setTitle('All Neco-Bot commands')
+				.setColor('RANDOM')
+				.setDescription('You can use b!help <command> on any existing command to get up-to-date help on it, nya!')
+				.addField('Commands', '`' + commandArrayNames.join(', ') + '`', true);
 
-        } else {
+			message.reply({ embeds: [helpEmbedNames] });
 
-            if(!client.commands.get(helpQuery)) return message.reply('No command under that name, GUBEH!');
+		}
+		else {
 
-            const helpEmbedDescription = new MessageEmbed()
-            .setTitle(`Information about ${client.commands.get(helpQuery).name}`)
-            .setColor('RANDOM')
-            .addFields(
-                {name: 'Description',  value: `${client.commands.get(helpQuery).description}`},
-                {name: 'Usage', value: `${client.commands.get(helpQuery).usage}`}
-            )            
-            .setFooter(
-                {text: 'Optional parameters are marked with []\nRequired parameters are marked with <>'}
-            )
-            message.reply({ embeds: [helpEmbedDescription]});
-        }
-    }
-}   
+			if (!client.commands.get(helpQuery)) return message.reply('No command under that name, GUBEH!');
+
+			let commandAlias = client.commands.get(helpQuery).aliases;
+
+			if(!commandAlias){
+				commandAlias = 'None';
+			}
+
+			const helpEmbedDescription = new MessageEmbed()
+				.setTitle(`Information about ${client.commands.get(helpQuery).name}`)
+				.setColor('RANDOM')
+				.addFields(
+					{ name: 'Description', value: `${client.commands.get(helpQuery).description}` },
+					{ name: 'Usage', value: `${client.commands.get(helpQuery).usage}` },
+					{ name: 'Aliases', value: '`' + commandAlias + '`'}
+				)
+				.setFooter(
+					{ text: 'Optional parameters are marked with []\nRequired parameters are marked with <>' },
+				);
+			message.reply({ embeds: [helpEmbedDescription] });
+		}
+	},
+};

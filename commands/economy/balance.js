@@ -2,32 +2,34 @@ const { MessageEmbed } = require('discord.js');
 const functions = require('../../functions');
 
 module.exports = {
-    name: 'balance',
-    description: 'Checks your current balance.',
-    usage: '`b!balance [user]`',
-    cooldown: 0,
-    async execute(message){
-        console.log('Going into balance.js');
+	name: 'balance',
+	description: 'Checks your current balance.',
+	aliases: 'bal',
+	usage: '`b!balance [user]`',
+	cooldown: 0,
+	async execute(message) {
+		console.log('Going into balance.js');
 
-        const mentionedUser = message.mentions.members.first();
+		const mentionedUser = message.mentions.members.first();
 
-        if(!mentionedUser){
+		if (!mentionedUser) {
 
-            user = message.author;
+			var user = message.author;
 
-        }else{
+		}
+		else {
 
-            user = mentionedUser.user;
+			user = mentionedUser.user;
 
-        }
-            userProfile = await functions.checkDBProfileExists(user.id);
+		}
+		const userProfile = await functions.checkDBProfileExists(user.id);
 
-            const balanceEmbed = new MessageEmbed()
+		const balanceEmbed = new MessageEmbed()
 
-            .setColor('RANDOM')
-            .setAuthor({ name: `Balance of ${user.username}`, iconURL: `${user.displayAvatarURL()}`})
-            .addField('Balance', `Your current balance is: ${userProfile.necoCoins} NecoCoins`, true)
+			.setColor('RANDOM')
+			.setAuthor({ name: `Balance of ${user.username}`, iconURL: `${user.displayAvatarURL()}` })
+			.addField('Balance', `Your current balance is: ${userProfile.necoCoins} NecoCoins`, true);
 
-            message.reply({ embeds: [balanceEmbed] });
-    }
-}
+		message.reply({ embeds: [balanceEmbed] });
+	},
+};

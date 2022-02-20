@@ -1,3 +1,5 @@
 .env
 node_modules
 .eslintrc.json
+config.json
+gaydar.js
