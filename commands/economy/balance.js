@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const functions = require('../../functions');
+const { checkDBProfileExists } = require('../../functions.js');
 
 module.exports = {
 	name: 'balance',
@@ -22,7 +22,7 @@ module.exports = {
 			user = mentionedUser.user;
 
 		}
-		const userProfile = await functions.checkDBProfileExists(user.id);
+		const userProfile = await checkDBProfileExists(user.id);
 
 		const balanceEmbed = new MessageEmbed()
 

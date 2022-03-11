@@ -19,7 +19,6 @@ module.exports = (client) => {
 					console.log(client.aliases)
 				}
 			}
-
 		}
 
 		console.log(`Done with collection for directory ${dirs}`);

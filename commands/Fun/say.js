@@ -7,7 +7,7 @@ module.exports = {
 		console.log('Going into say.js');
 
 		const botSay = message.content.substring(message.content.indexOf('y') + 2);
-		if (!botSay) return message.reply('C\'mon you need to give me something to say, burunyu!');
+		if (!botSay) return invalidCommandUsage(message, this.name, this.usage);
 		const channel = message.channel;
 
 		message.delete();

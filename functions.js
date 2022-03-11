@@ -43,7 +43,7 @@ module.exports = {
 		}
 		else {
 
-			message.reply(`You need to wait ${commandString.cooldown} seconds to execute ${commandString.name}, bibibi...`);
+			message.reply(`You need to wait ${commandObject.cooldown} seconds to execute ${commandObject.name}, bibibi...`);
 
 		}
 	},

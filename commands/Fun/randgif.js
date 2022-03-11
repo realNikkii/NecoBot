@@ -21,7 +21,7 @@ module.exports = {
 
 		const query = message.content.substring(message.content.indexOf('f') + 2);
 
-		if (!query) return message.reply('I need something to search for!');
+		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
 		await Tenor.Search.Random(query, '1').then(Results => {
 			Results.forEach(Post => {

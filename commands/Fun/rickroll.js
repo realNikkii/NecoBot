@@ -10,7 +10,7 @@ module.exports = {
 
 		const mentionedUser = message.mentions.members.first();
 
-		if (!mentionedUser) return message.reply('You need to @ an user!');
+		if (!mentionedUser) return invalidCommandUsage(message, this.name, this.usage);
 		if (mentionedUser.user.id === client.user.id) return message.reply('You cannot make me rickroll myself! Doridoridoridori~');
 
 		try {

@@ -18,7 +18,7 @@ module.exports = {
 
 		const query = message.content.slice(command.length + 3);
 
-		if (!query) return message.reply('You need to give me something to search for!');
+		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
 		googleClient.search(query, { page:1 }).then(images => {
 			// TODO: Add buttons that show the next image on the page, and one to go to a previous image
