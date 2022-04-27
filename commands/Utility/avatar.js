@@ -8,20 +8,13 @@ module.exports = {
 	execute(message) {
 		console.log('Going into avatar.js');
 
-		const mentionedUser = message.mentions.members.first();
-
-		if (!mentionedUser) {
-			var user = message.author;
-
-		}
-		else {
-			user = mentionedUser.user;
-		}
+		const user = message.mentions.members.first() || message.author;
+		
 		const profileEmbed = new MessageEmbed()
 			.setColor('RANDOM')
 			.setTitle('Profile Picture of ' + user.username)
-			.setDescription(user.displayAvatarURL())
-			.setImage(user.displayAvatarURL());
+			.setImage(user.displayAvatarURL({ format: 'png' }))
+			.setDescription(`[png](${user.displayAvatarURL({ format: 'png' })}) | [jpeg](${user.displayAvatarURL({ format: 'jpeg' })})`);
 
 		message.reply({ embeds: [profileEmbed] });
 	},

@@ -5,18 +5,18 @@ const { MessageEmbed } = require('discord.js');
 
 const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY);
 
-
 module.exports = {
 	name: 'image',
 	description: 'Searches in Google with the input of the user.',
 	aliases: 'img',
 	usage: '`b!image <query>`',
 	cooldown: 0,
-	async execute(message, client, commandObject, command) {
+	async execute(message) {
 
 		console.log('Going into image.js');
 
-		const query = message.content.slice(command.length + 3);
+		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		const query = args[1];
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 

@@ -1,3 +1,13 @@
+/*	╔═══════════════════════╗
+ 	║	U	S	A	G	E	║
+	╠═══════════════════════╣
+	║	|	|	|	|	|	║
+	╠═══════════════════════╩══════════════════════════════════════════════════════════════════════════════════════════╗
+	║ commandHandler.js fills the client.commands collection with all our command objects, additionally the command    ║
+	║ aliases are also put into the client.aliases collection.														   ║
+	╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+*/
+
 const fs = require('fs');
 const path = require('path');
 

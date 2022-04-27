@@ -13,5 +13,5 @@ module.exports = {
 		else if (headOrTails === 1) {
 			message.channel.send('It landed on... tails! Nya! :coin:');
 		}
-	},
+	}
 };

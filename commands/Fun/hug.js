@@ -17,7 +17,9 @@ module.exports = {
 	cooldown: 0,
 	execute(message) {
 
-		const huggedUser = message.content.substring(message.content.indexOf('g') + 2);
+		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+
+		const huggedUser = args[1];
 
 		if (!huggedUser) return message.reply('What, you wanna hug yourself, nya?');
 

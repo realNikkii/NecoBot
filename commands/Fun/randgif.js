@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { invalidCommandUsage } = require('../../handlers/errorHandler')
 
 const { MessageEmbed } = require('discord.js');
 
@@ -19,7 +20,8 @@ module.exports = {
 	async execute(message) {
 		console.log('Going into randgif.js');
 
-		const query = message.content.substring(message.content.indexOf('f') + 2);
+		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		const query = args[1];
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
