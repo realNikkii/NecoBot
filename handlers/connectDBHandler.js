@@ -7,7 +7,7 @@
 	║ gives out the error message, if it succeeds then it will say it connected in the console output.				   ║
 	╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 */
-const mongoose = require('mongoose');
+const { connect } = require('mongoose');
 
 require('dotenv').config();
 
@@ -15,7 +15,7 @@ module.exports = () => {
 
 	console.log('Going into connectDBHandler.js');
 
-	mongoose.connect(process.env.MONGODB_SRV, {
+	connect(process.env.MONGODB_SRV, {
 	}).then(() => {
 		console.log('Connected to the necoBotDB');
 	})

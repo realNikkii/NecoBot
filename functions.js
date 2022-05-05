@@ -47,4 +47,33 @@ module.exports = {
 
 		}
 	},
+
+	getArguments(message) {
+
+		return message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+
+	},
+
+
+	passCLIArgs() {
+		
+		let argsMap = new Map();
+
+		process.argv.forEach(arg => {
+
+			if (arg.startsWith('--')) {
+
+				const argValues = arg.split('=');
+				const mapKey = argValues[0].replace('--', '');
+				const mapValue = argValues[1];
+
+				argsMap.set(mapKey, mapValue);
+
+			}
+		});
+
+		return argsMap;
+	}
+
+	
 };

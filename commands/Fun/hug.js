@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { MessageEmbed } = require('discord.js');
+const { getArguments } = require('../../functions')
 
 const Tenor = require('tenorjs').client({
 	'Key': process.env.TENOR_KEY,
@@ -17,7 +18,7 @@ module.exports = {
 	cooldown: 0,
 	execute(message) {
 
-		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		const args = getArguments(message);
 
 		const huggedUser = args[1];
 
