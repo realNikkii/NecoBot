@@ -1,33 +1,31 @@
-require('dotenv').config();
-
 const { MessageAttachment } = require('discord.js');
-const { loadImage, createCanvas } = require('canvas');
+const { loadImage, createCanvas} = require('canvas');
 const { invalidCommandUsage } = require('../../handlers/errorHandler.js')
 
 module.exports = {
     name: 'text',
     description: 'Add text to an image',
-    usage: '`b!text <text> <image url/embed (png, jpeg, gif)> <font size>`',
+    usage: '`b!text "<text in quotation marks>" <image url/embed>`',
     cooldown: 0,
     async execute(message){
 
-        const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
-        // args[0] would be the command i.e. b!text
-        const imageText = args[1];
+
         let sentImage;
+        const imageText = message.content.substring(
+            message.content.indexOf('"') + 1,
+            message.content.lastIndexOf('"')
+        );
 
         if(!imageText) return invalidCommandUsage(message, this.name, this.usage);
 
-        if(!args[2]) {
+        console.log(imageText);
 
+        if(!message.content.substring(this.name.length + 3 + imageText.length + 2)) {
 
-            // Does the message have an attachment?
             if(message.attachments.first()){
 
-            // If yes take the attachment as the image to be modified    
                 sentImage = await loadImage(message.attachments.first().url);
 
-            // If no return error    
             } else {
 
                 return invalidCommandUsage(message, this.name, this.usage);
@@ -36,15 +34,9 @@ module.exports = {
 
         } else {
 
-            //If there is a link given, load the image with that link, should there be an error it will just be caught
-
-                sentImage = await loadImage(args[2]).catch(err => {
-                console.log(err)
-            });
+            sentImage = await loadImage(message.content.substring(this.name.length + 3 + imageText.length + 2));
 
         }
-
-        if(!sentImage) return invalidCommandUsage(message, this.name, this.usage)
 
         const canvas = createCanvas(sentImage.width, sentImage.height); 
         const ctx = canvas.getContext('2d');
@@ -59,8 +51,8 @@ module.exports = {
         ctx.fillText(imageText, canvas.width / 2 , canvas.height / 2);
 
         const canvasAttachment = new MessageAttachment(canvas.toBuffer(), 'textImage.png')
-        
-        message.reply({ files: [canvasAttachment] });
+
+        message.channel.send({ files: [canvasAttachment] });
     },
 
     evaluateFontSize(context, canvas, text){
@@ -75,4 +67,4 @@ module.exports = {
 
         return context.font
     }
-}
+} 
