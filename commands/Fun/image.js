@@ -15,7 +15,7 @@ module.exports = {
 
 		console.log('Going into image.js');
 
-		const query = message.content.slice(command.length + 3)
+		const query = message.content.slice(command.length + 3);
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 

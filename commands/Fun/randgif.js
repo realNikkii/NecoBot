@@ -17,11 +17,10 @@ module.exports = {
 	aliases: 'rgif',
 	usage: '`b!randgif <query>`',
 	cooldown: 0,
-	async execute(message) {
+	async execute(message, _client, _commandObject, command) {
 		console.log('Going into randgif.js');
 
-		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
-		const query = args[1];
+		const query = message.content.slice(command.length + 3);
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
