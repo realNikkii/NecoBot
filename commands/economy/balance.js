@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const functions = require('../../functions');
+const { checkDBProfileExists } = require('../../functions.js');
 
 module.exports = {
 	name: 'balance',
@@ -10,11 +10,12 @@ module.exports = {
 	async execute(message) {
 		console.log('Going into balance.js');
 
+		let user;
 		const mentionedUser = message.mentions.members.first();
 
 		if (!mentionedUser) {
 
-			var user = message.author;
+			user = message.author;
 
 		}
 		else {
@@ -22,13 +23,13 @@ module.exports = {
 			user = mentionedUser.user;
 
 		}
-		const userProfile = await functions.checkDBProfileExists(user.id);
+		const userProfile = await checkDBProfileExists(user.id);
 
 		const balanceEmbed = new MessageEmbed()
 
 			.setColor('RANDOM')
 			.setAuthor({ name: `Balance of ${user.username}`, iconURL: `${user.displayAvatarURL()}` })
-			.addField('Balance', `Your current balance is: ${userProfile.necoCoins} NecoCoins`, true);
+			.addField('Balance', `${user.username}'s current balance is: ${userProfile.necoCoins} NecoCoins`, true);
 
 		message.reply({ embeds: [balanceEmbed] });
 	},

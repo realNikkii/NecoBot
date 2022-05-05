@@ -1,10 +1,9 @@
 require('dotenv').config();
 
+const { invalidCommandUsage } = require('../../handlers/errorHandler');
 const imageSearch = require('image-search-google');
 const { MessageEmbed } = require('discord.js');
-
 const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY);
-
 
 module.exports = {
 	name: 'image',
@@ -12,13 +11,13 @@ module.exports = {
 	aliases: 'img',
 	usage: '`b!image <query>`',
 	cooldown: 0,
-	async execute(message, client, commandObject, command) {
+	async execute(message, _client, _commandObject, command) {
 
 		console.log('Going into image.js');
 
 		const query = message.content.slice(command.length + 3);
 
-		if (!query) return message.reply('You need to give me something to search for!');
+		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
 		googleClient.search(query, { page:1 }).then(images => {
 			// TODO: Add buttons that show the next image on the page, and one to go to a previous image

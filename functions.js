@@ -43,8 +43,37 @@ module.exports = {
 		}
 		else {
 
-			message.reply(`You need to wait ${commandString.cooldown} seconds to execute ${commandString.name}, bibibi...`);
+			message.reply(`You need to wait ${commandObject.cooldown} seconds to execute ${commandObject.name}, bibibi...`);
 
 		}
 	},
+
+	getArguments(message) {
+
+		return message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+
+	},
+
+
+	passCLIArgs() {
+		
+		let argsMap = new Map();
+
+		process.argv.forEach(arg => {
+
+			if (arg.startsWith('--')) {
+
+				const argValues = arg.split('=');
+				const mapKey = argValues[0].replace('--', '');
+				const mapValue = argValues[1];
+
+				argsMap.set(mapKey, mapValue);
+
+			}
+		});
+
+		return argsMap;
+	}
+
+	
 };

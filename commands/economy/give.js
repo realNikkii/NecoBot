@@ -1,5 +1,6 @@
 const functions = require('../../functions');
 const profileModel = require('../../models/profileSchema');
+const { invalidCommandUsage } = require('../../handlers/errorHandler')
 
 module.exports = {
 	name: 'give',
@@ -11,7 +12,7 @@ module.exports = {
 		const mentionedUser = message.mentions.members.first();
 		const giveAmount = Number.parseInt(message.content.substring(message.content.indexOf('>') + 1));
 
-		if (!mentionedUser || !giveAmount || Math.sign(giveAmount) == -1 || typeof giveAmount != 'number') return message.reply(`You use the command like this: ${this.usage} nya!`);
+		if (!mentionedUser || !giveAmount || Math.sign(giveAmount) == -1 || typeof giveAmount != 'number') return invalidCommandUsage(message, this.name, this.usage);
 
 		const authorProfile = await profileModel.findOne({ userID: message.author.id });
 

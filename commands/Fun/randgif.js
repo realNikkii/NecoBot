@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { invalidCommandUsage } = require('../../handlers/errorHandler')
 
 const { MessageEmbed } = require('discord.js');
 
@@ -16,12 +17,12 @@ module.exports = {
 	aliases: 'rgif',
 	usage: '`b!randgif <query>`',
 	cooldown: 0,
-	async execute(message) {
+	async execute(message, _client, _commandObject, command) {
 		console.log('Going into randgif.js');
 
-		const query = message.content.substring(message.content.indexOf('f') + 2);
+		const query = message.content.slice(command.length + 3);
 
-		if (!query) return message.reply('I need something to search for!');
+		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
 		await Tenor.Search.Random(query, '1').then(Results => {
 			Results.forEach(Post => {
