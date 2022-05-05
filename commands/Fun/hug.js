@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { MessageEmbed } = require('discord.js');
-const { getArguments } = require('../../functions')
+const { getArguements } = require('../../functions')
 
 const Tenor = require('tenorjs').client({
 	'Key': process.env.TENOR_KEY,
@@ -16,11 +16,9 @@ module.exports = {
 	description: 'Hug someone!',
 	usage: '`b!hug <user>`',
 	cooldown: 0,
-	execute(message) {
+	execute(message, _client, _commandObject, command) {
 
-		const args = getArguments(message);
-
-		const huggedUser = args[1];
+		const huggedUser = message.content.slice(command.length + 3);
 
 		if (!huggedUser) return message.reply('What, you wanna hug yourself, nya?');
 

@@ -1,3 +1,5 @@
+const { invalidCommandUsage } = require('../../functions.js');
+
 require('dotenv').config();
 
 module.exports = {
