@@ -18,8 +18,6 @@ module.exports = {
 
         if(!imageText) return invalidCommandUsage(message, this.name, this.usage);
 
-        console.log(imageText);
-
         if(!message.content.substring(this.name.length + 3 + imageText.length + 2)) {
 
             if(message.attachments.first()){
