@@ -8,7 +8,11 @@ module.exports = {
 	execute(message) {
 		console.log('Going into info.js');
 
-		const user = message.mentions.members.first() || message.author;
+		const mentionedUser = message.mentions.members.first();
+		let user;
+
+		if (!mentionedUser) user = message.author;
+		else user = mentionedUser.user;
 
 		const infoEmbedAuthor = new MessageEmbed()
 			.setColor('RANDOM')

@@ -1,8 +1,8 @@
 require('dotenv').config();
 
+const { invalidCommandUsage } = require('../../handlers/errorHandler');
 const imageSearch = require('image-search-google');
 const { MessageEmbed } = require('discord.js');
-
 const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY);
 
 module.exports = {

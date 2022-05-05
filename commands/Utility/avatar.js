@@ -8,7 +8,12 @@ module.exports = {
 	execute(message) {
 		console.log('Going into avatar.js');
 
-		const user = message.mentions.members.first() || message.author;
+		const mentionedUser = message.mentions.members.first();
+		let user;
+
+		if (!mentionedUser) user = message.author;
+		else user = mentionedUser.user;
+		
 		
 		const profileEmbed = new MessageEmbed()
 			.setColor('RANDOM')
