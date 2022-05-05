@@ -1,5 +1,3 @@
-const { getArguments } = require('../../functions');
-
 require('dotenv').config();
 
 module.exports = {
@@ -10,8 +8,7 @@ module.exports = {
 	execute(message) {
 		console.log('Going into say.js');
 
-		const args = getArguments();
-		const botSay = args[1];
+		const botSay = message.content.slice(message.content.indexOf(this.name) + 3);
 
 		if (!botSay) return invalidCommandUsage(message, this.name, this.usage);
 		const channel = message.channel;

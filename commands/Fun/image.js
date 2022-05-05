@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const imageSearch = require('image-search-google');
+const { getArguments } = require('../../functions');
 const { MessageEmbed } = require('discord.js');
 
 const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY);
@@ -15,7 +16,7 @@ module.exports = {
 
 		console.log('Going into image.js');
 
-		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		const args = getArguments(message);
 		const query = args[1];
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);

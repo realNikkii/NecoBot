@@ -1,13 +1,3 @@
-/*	╔═══════════════════════╗
- 	║	U	S	A	G	E	║
-	╠═══════════════════════╣
-	║	|	|	|	|	|	║
-	╠═══════════════════════╩══════════════════════════════════════════════════════════════════════════════════════════╗
-	║ eventHandler.js runs any event callback that it can find in the events folder (rn only on not once events),	   ║
-	║ through the ...args it passes any variable the callback gives us i.e. messageEvent -> message object             ║
-	╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-*/
-
 const fs = require('fs');
 const path = require('path');
 
