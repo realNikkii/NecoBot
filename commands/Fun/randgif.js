@@ -25,12 +25,12 @@ module.exports = {
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
 		await Tenor.Search.Random(query, '1').then(Results => {
-			Results.forEach(Post => {
+			Results.forEach(post => {
 
 				const randGifEmbed = new MessageEmbed()
 					.setColor('RANDOM')
 					.setDescription(`Random gif for "${query}"`)
-					.setImage(Post.media[0].gif.url);
+					.setImage(post.media[0].gif.url);
 
 				message.reply({ embeds: [randGifEmbed] });
 			});

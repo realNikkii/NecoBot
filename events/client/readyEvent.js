@@ -15,7 +15,7 @@ module.exports = {
 
 		} else {
 
-			client.user.setActivity(`in the great neco war`, { type: 'COMPETING'});
+			client.user.setActivity(`the great neco war`, { type: 'COMPETING'});
 			client.user.setStatus('online');
 
 		}

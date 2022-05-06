@@ -16,7 +16,6 @@ module.exports = (client) => {
 				client.commands.set(command.name, command);
 				if (command.aliases) {
 					client.aliases.set(command.aliases, command); // Commands have max 1 alias
-					console.log(client.aliases)
 				}
 			}
 		}
