@@ -17,6 +17,6 @@ module.exports = {
 			},
 		},
 		);
-		return message.reply(`${message.author.username} snatched coins from a random Neco-Arc and gained ${stolenMoney} NecoCoins... how mischevious nya nya nya!`);
+		return message.reply(`${message.author} snatched coins from a random Neco-Arc and gained **${stolenMoney}** NecoCoins... how mischevious nya nya nya!`);
 	},
 };

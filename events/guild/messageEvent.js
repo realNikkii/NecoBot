@@ -26,6 +26,12 @@ module.exports = {
 
 		if (!commandObject) return;
 
+		if (commandObject.admin === true) {
+
+			if (message.author.id !== process.env.ADMIN) return message.reply('This command is admin only!');
+
+		}
+
 		cooldownCheck(client, message, commandObject, commandString);
 	},
 };

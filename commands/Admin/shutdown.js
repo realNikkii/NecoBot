@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 require('dotenv').config();
 
 module.exports = {
@@ -10,7 +12,9 @@ module.exports = {
 	execute(message, client) {
 		console.log('Going into shutdown.js');
 
-			message.channel.send('Shutting down... nya...').then(() => {
+			message.channel.send('Shutting down... nya...').then(async () => {
+				await mongoose.disconnect();
+				console.info('Disconnected from necoBotDB, shutting down')
 				client.destroy();
 
 			});
