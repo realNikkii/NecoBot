@@ -11,7 +11,7 @@ module.exports = {
 	aliases: 'img',
 	usage: '`b!image <query>`',
 	cooldown: 0,
-	async execute(message, client, _commandObject, command) {
+	async execute(message, __client, _commandObject, command) {
 
 		console.log('Going into image.js');
 
@@ -41,7 +41,7 @@ module.exports = {
 					new MessageButton()
 						.setCustomId('googleSearchRandom')
 						.setLabel('?')
-						.setStyle('SUCCESS'),	
+						.setStyle('PRIMARY'),	
 					new MessageButton()
 						.setCustomId('googleSearchNext')
 						.setLabel('>')
@@ -55,9 +55,6 @@ module.exports = {
 			console.log(originMessage);
 
 			const searchButtonCollector = originMessage.createMessageComponentCollector({ componentType: 'BUTTON', time: 10000});
-
-		
-
 			searchButtonCollector.on('collect', async button => {
 
 				searchButtonCollector.resetTimer();
@@ -85,10 +82,10 @@ module.exports = {
 						.setDescription(images[imageIndex].context)
 						.setFooter({ text: `Images for ${query} | Result ${imageIndex + 1}/10`});
 	
-					if (googleSearchEmbed.description !== images[0].context) googleSearchActionRow.components[0].setDisabled(false);
+					if (googleSearchEmbed.image.url !== images[0].url) googleSearchActionRow.components[0].setDisabled(false);
 					else googleSearchActionRow.components[0].setDisabled(true);
 	
-					if (googleSearchEmbed.description !== images[images.length - 1].context) googleSearchActionRow.components[2].setDisabled(false);
+					if (googleSearchEmbed.image.url !== images[images.length - 1].url) googleSearchActionRow.components[2].setDisabled(false);
 					else googleSearchActionRow.components[2].setDisabled(true);
 	
 					await button.deferUpdate();
@@ -99,9 +96,9 @@ module.exports = {
 				searchButtonCollector.on('end', () => {
 
 					googleSearchEmbed.setFooter({ text: `Images for ${query} | Search timed out`});
-					googleSearchActionRow.components[0, 1, 2].setDisabled('true');
+					googleSearchActionRow.components.forEach(component => component.setDisabled(true));
 
-					originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
+					originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow]});
 				})
 		});
 	},

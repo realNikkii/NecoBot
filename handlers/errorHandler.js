@@ -11,5 +11,15 @@ module.exports = {
 
         commandMessage.reply({ embeds: [errorEmbed]})
 
+    },
+
+    commandError(commandMessage, errorDescription, commandName){
+
+        const errorEmbed = new MessageEmbed()
+            .setColor('RED')
+            .setTitle(`⚠️ Error while using ${commandName}, nya nya nya.`)
+            .setDescription(errorDescription)
+
+        commandMessage.reply({ embeds: [errorEmbed]});
     }
 }

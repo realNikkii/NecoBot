@@ -3,8 +3,8 @@ require('dotenv').config();
 module.exports = {
     name: 'restart',
     description: 'Restarts the bot (admin only!).',
-    aliases:'res',
-    usage:'`b!restart`',
+    aliases: 'res',
+    usage: '`b!restart`',
     cooldown: 0,
     admin: true,
     execute(message, client) {

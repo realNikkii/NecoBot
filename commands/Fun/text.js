@@ -1,6 +1,6 @@
 const { MessageAttachment } = require('discord.js');
 const { loadImage, createCanvas} = require('canvas');
-const { invalidCommandUsage } = require('../../handlers/errorHandler.js')
+const { invalidCommandUsage, commandError } = require('../../handlers/errorHandler.js')
 
 module.exports = {
     name: 'text',
@@ -42,7 +42,7 @@ module.exports = {
         ctx.drawImage(sentImage, 0, 0, canvas.width, canvas.height);
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = this.evaluateFontSize(ctx, canvas, imageText)
+        ctx.font = this.evaluateFontSize(ctx, canvas, imageText, message)
         ctx.fillStyle = '#000000';
         ctx.textAlign = 'center';
 
@@ -55,11 +55,12 @@ module.exports = {
 
     evaluateFontSize(context, canvas, text){
 
-        let evaluatedFontSize = 120;
+        let evaluatedFontSize = 100;
 
         do {
+            if (evaluatedFontSize - 10 <= 0) return;
 
-            context.font = `${evaluatedFontSize -= 10}px sans-serif`
+            context.font = `${evaluatedFontSize -= 10}px sans-serif`;
 
         } while (context.measureText(text).width > canvas.width)
 
