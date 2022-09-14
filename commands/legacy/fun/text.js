@@ -1,6 +1,6 @@
 const { MessageAttachment } = require('discord.js');
 const { loadImage, createCanvas} = require('canvas');
-const { invalidCommandUsage, commandError } = require('../../handlers/errorHandler.js')
+const { invalidCommandUsage, commandError } = require('../../../handlers/errorHandler.js')
 
 module.exports = {
     name: 'text',

@@ -1,4 +1,4 @@
-const profileModel = require('../../models/businessSchema');
+const profileModel = require('../../../models/businessSchema');
 
 require('dotenv').config();
 

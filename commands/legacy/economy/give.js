@@ -1,6 +1,6 @@
-const functions = require('../../functions');
-const profileModel = require('../../models/profileSchema');
-const { invalidCommandUsage } = require('../../handlers/errorHandler')
+const functions = require('../../../functions');
+const profileModel = require('../../../models/profileSchema');
+const { invalidCommandUsage } = require('../../../handlers/errorHandler')
 
 module.exports = {
 	name: 'give',

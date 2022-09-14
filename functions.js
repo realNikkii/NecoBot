@@ -38,7 +38,7 @@ module.exports = {
 					client.userCooldowns.delete(commandOnCooldownID);
 
 				}, commandObject.cooldown * 1000);
-			}qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+			}
 
 		}
 		else {

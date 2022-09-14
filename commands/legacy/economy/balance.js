@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { checkDBProfileExists } = require('../../functions.js');
+const { checkDBProfileExists } = require('../../../functions.js');
 
 module.exports = {
 	name: 'balance',

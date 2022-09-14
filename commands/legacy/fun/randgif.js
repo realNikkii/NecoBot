@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { invalidCommandUsage } = require('../../handlers/errorHandler')
+const { invalidCommandUsage } = require('../../../handlers/errorHandler')
 
 const { MessageEmbed } = require('discord.js');
 

@@ -1,4 +1,4 @@
-const { invalidCommandUsage } = require('../../handlers/errorHandler');
+const { invalidCommandUsage } = require('../../../handlers/errorHandler');
 
 require('dotenv').config();
 

@@ -1,4 +1,4 @@
-const { getArguments } = require('../../functions');
+const { getArguments } = require('../../../functions');
 const mongoose = require('mongoose');
 
 module.exports = {
