@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Transfer necoCoins to another user.',
 	usage: '`b!give <user> <+amount>`',
 	cooldown: 0,
+	dbReq: true,
 	async execute(message) {
 
 		const mentionedUser = message.mentions.members.first();

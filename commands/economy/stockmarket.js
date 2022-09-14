@@ -7,6 +7,7 @@ module.exports = {
     aliases: 'market',
     usage: 'b!stockmarket [option]',
     cooldown: 0,
+    dbReq: true,
     async execute(message){
 
     const args = getArguments(message);

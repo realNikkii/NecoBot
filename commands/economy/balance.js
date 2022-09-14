@@ -7,6 +7,7 @@ module.exports = {
 	aliases: 'bal',
 	usage: '`b!balance [user]`',
 	cooldown: 0,
+	dbReq: true,
 	async execute(message) {
 		console.log('Going into balance.js');
 

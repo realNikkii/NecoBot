@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Steal from random civillians, how fun!',
 	usage: '`b!steal`',
 	cooldown: 60,
+	dbReq: true,
 	async execute(message) {
 
 		const stolenMoney = Math.floor(Math.random() * 200) + 1;

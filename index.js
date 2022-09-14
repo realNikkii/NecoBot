@@ -6,6 +6,7 @@ require('dotenv').config();
 client.userCooldowns = new Set(); 
 client.aliases = new Collection();
 client.commands = new Collection();
+client.noDb = false;
 
 [ 'connectDBHandler', 'commandHandler', 'eventHandler' ].forEach(handler => { 
 	require(`./handlers/${handler}`)(client);

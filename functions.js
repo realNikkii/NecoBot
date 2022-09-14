@@ -7,7 +7,7 @@ module.exports = {
 		let discordUserDBProfile = await profileModel.findOne({ userID: discordUserID });
 
 		if (!discordUserDBProfile) {
-			var profile = await profileModel.create({
+			const profile = await profileModel.create({
 				userID: discordUserID,
 				level: 1,
 				experience: 0,
@@ -38,7 +38,7 @@ module.exports = {
 					client.userCooldowns.delete(commandOnCooldownID);
 
 				}, commandObject.cooldown * 1000);
-			}
+			}qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
 
 		}
 		else {

@@ -5,21 +5,32 @@ module.exports = {
 	once: 'true',
 	execute(client) {
 
-		const cliArgs = passCLIArgs();
-		const runType = cliArgs.get('runType');
+		let runType = passCLIArgs().get('runType');
 
-		if (runType === 'admin') {
+		if (client.noDb) runType = 'noDb';
 
-			client.user.setActivity(`admin mode!`, { type: 'PLAYING'});
-			client.user.setStatus('dnd');
+		switch (runType) {
+			
+			case 'noDb':
 
-		} else {
+				client.user.setActivity('for database connection...', { type: 'WATCHING'});
+				client.user.setStatus('dnd');
+				break;
 
-			client.user.setActivity(`the great neco war`, { type: 'COMPETING'});
-			client.user.setStatus('online');
+			case 'admin':
+
+				client.user.setActivity(`admin mode!`, { type: 'PLAYING'});
+				client.user.setStatus('dnd');
+				break;
+
+			default:
+
+				client.user.setActivity(`the great neco war`, { type: 'COMPETING'});
+				client.user.setStatus('online');
+				break;
+
 
 		}
-
 		console.log('Online!');
 	},
 };
