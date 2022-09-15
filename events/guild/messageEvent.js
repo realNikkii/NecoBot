@@ -1,22 +1,19 @@
 const { checkDBProfileExists, passCLIArgs, cooldownCheck, getArguments } = require('../../functions');
 const { commandError } = require('../../handlers/errorHandler');
-
-require('dotenv').config();
+const { prefix, admin } = require('../../config.json');
 
 module.exports = {
 	name: 'messageCreate',
 	once: false,
 	async execute(message, client) {
 
-		if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
+		if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 		const cliArgs = passCLIArgs();
 		const runType = cliArgs.get('runType');
 
-		if (runType === 'admin') {
-
-			if (message.author != process.env.ADMIN) return message.reply('Bot is currently in admin mode... nya...');
-		}
+		if (runType === 'admin' && message.author !== admin) return message.reply('Bot is currently in admin mode... nya...');
+		
 
 		if (!client.noDb) await checkDBProfileExists(message.author.id);
 
@@ -29,14 +26,18 @@ module.exports = {
 
 		if (!commandObject) return;
 
-		if (commandObject.dbReq && client.noDb) return commandError(message, 'Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!' , commandObject.name);
+		if (commandObject.dbReq && client.noDb) {
 
-		if (commandObject.admin === true) {
+			return commandError(message, 'Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!' , commandObject.name);
+		
+		}
 
-			if (message.author.id !== process.env.ADMIN) return message.reply('This command is admin only!');
+		if (commandObject.admin === true && message.author.id !== admin) {
+
+			return message.reply('This command is admin only!');
 
 		}
 
 		cooldownCheck(client, message, commandObject, commandString);
-	},
+	}
 };

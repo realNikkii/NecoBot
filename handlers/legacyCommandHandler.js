@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { readdirSync } = require('fs');
 const path = require('path');
 
 module.exports = (client) => {
@@ -7,7 +7,7 @@ module.exports = (client) => {
 
 	const loadCommandDirs = (dirs) => {
 
-		const commandFiles = fs.readdirSync(path.join(__dirname, `../commands/legacy/${dirs}`)).filter(file => file.endsWith('.js'));
+		const commandFiles = readdirSync(path.join(__dirname, `../commands/legacy/${dirs}`)).filter(file => file.endsWith('.js'));
 
 		for (const file of commandFiles) {
 			const command = require(path.join(__dirname, `../commands/legacy/${dirs}/${file}`));
@@ -24,10 +24,10 @@ module.exports = (client) => {
 		console.log(`Done with collection for directory ${dirs}`);
 	};
 
-	const legacyCommandDirectories = source =>
+	const getLegacyCommandDirectories = source =>
 	readdirSync(source, { withFileTypes: true })
-	  .filter(dirent => dirent.isDirectory())
-	  .map(dirent => dirent.name)
+		.filter(dirent => dirent.isDirectory())
+		.map(dirent => dirent.name);
 
-	legacyCommandDirectories.forEach(dir => loadCommandDirs(dir));
+	getLegacyCommandDirectories(path.join(__dirname, `../commands/legacy`)).forEach(dir => loadCommandDirs(dir));
 };

@@ -1,10 +1,9 @@
-require('dotenv').config();
-
 const { MessageEmbed } = require('discord.js');
-const { getArguements } = require('../../../functions')
+const { getArguements } = require('../../../functions');
+const { tenorKey } = require('../../../config.json');
 
 const Tenor = require('tenorjs').client({
-	'Key': process.env.TENOR_KEY,
+	'Key': tenorKey,
 	'Filter': 'off',
 	'Locale': 'en_US',
 	'MediaFilter': 'minimal',

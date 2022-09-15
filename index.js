@@ -1,7 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents:['GUILDS', 'GUILD_MESSAGES'] });
-
-require('dotenv').config();
+const { token } = require('./config.json');
 
 client.userCooldowns = new Set(); 
 client.aliases = new Collection();
@@ -13,4 +12,4 @@ client.noDb = false;
 	require(`./handlers/${handler}`)(client);
 });
 
-client.login(process.env.TOKEN); 
+client.login(token); 

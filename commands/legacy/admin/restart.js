@@ -1,4 +1,4 @@
-require('dotenv').config();
+const { token } = require('../../../config.json');
 
 module.exports = {
     name: 'restart',
@@ -11,10 +11,8 @@ module.exports = {
 
         message.reply('Client is restarting...').then(async () => {
             await client.destroy();
-            await client.login(process.env.TOKEN);
+            await client.login(token);
             message.reply('Restart successful!');
         });
-
     }
-
 }

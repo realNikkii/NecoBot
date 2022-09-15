@@ -1,9 +1,8 @@
-require('dotenv').config();
-
+const { CSE_ID, googleKey } = require('../../../config.json');
 const { invalidCommandUsage } = require('../../../handlers/errorHandler');
 const imageSearch = require('image-search-google');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const googleClient = new imageSearch(process.env.CSE_ID, process.env.GOOGLE_KEY);
+const googleClient = new imageSearch(CSE_ID, googleKey);
 
 module.exports = {
 	name: 'image',
@@ -15,9 +14,9 @@ module.exports = {
 
 		console.log('Going into image.js');
 
-
 		let imageIndex = 0;
-		const query = message.content.slice(command.length + 3);
+		const messageStartIndex = 3;
+		const query = message.content.slice(command.length + messageStartIndex);
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
@@ -46,7 +45,7 @@ module.exports = {
 						.setCustomId('googleSearchNext')
 						.setLabel('>')
 						.setStyle('PRIMARY')
-				)
+				);
 
 			if (googleSearchEmbed.description === images[0].context) googleSearchActionRow.components[0].setDisabled(true);
 
@@ -64,11 +63,11 @@ module.exports = {
 				switch(button.customId){
 
 					case 'googleSearchPrevious':
-							imageIndex--
+							imageIndex--;
 							break;
 	
 						case 'googleSearchNext':
-							imageIndex++
+							imageIndex++;
 							break;
 							
 						case 'googleSearchRandom':
@@ -76,22 +75,26 @@ module.exports = {
 							break;
 				}
 
+				const searchPrevBtn = 0;
+				const searchNextBtn = 2;
+
 				googleSearchEmbed
 						.setImage(images[imageIndex].url)
 						.setTitle(images[imageIndex].snippet)
 						.setDescription(images[imageIndex].context)
 						.setFooter({ text: `Images for ${query} | Result ${imageIndex + 1}/10`});
 	
-					if (googleSearchEmbed.image.url !== images[0].url) googleSearchActionRow.components[0].setDisabled(false);
-					else googleSearchActionRow.components[0].setDisabled(true);
+					if (googleSearchEmbed.image.url !== images[0].url) googleSearchActionRow.components[searchPrevBtn].setDisabled(false);
+					else googleSearchActionRow.components[searchPrevBtn].setDisabled(true);
 	
-					if (googleSearchEmbed.image.url !== images[images.length - 1].url) googleSearchActionRow.components[2].setDisabled(false);
-					else googleSearchActionRow.components[2].setDisabled(true);
+					if (googleSearchEmbed.image.url !== images[images.length - 1].url) googleSearchActionRow.components[searchNextBtn].setDisabled(false);
+					else googleSearchActionRow.components[searchNextBtn].setDisabled(true);
 	
 					await button.deferUpdate();
 					await originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
 
-				}, 500)
+				// 500 indicates timeout in ms
+				}, 500);
 
 				searchButtonCollector.on('end', () => {
 
@@ -99,7 +102,7 @@ module.exports = {
 					googleSearchActionRow.components.forEach(component => component.setDisabled(true));
 
 					originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow]});
-				})
+				});
 		});
-	},
+	}
 };

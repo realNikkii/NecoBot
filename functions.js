@@ -1,4 +1,5 @@
 const profileModel = require('./models/profileSchema');
+const { prefix } = require('./config.json');
 
 module.exports = {
 
@@ -50,7 +51,7 @@ module.exports = {
 
 	getArguments(message) {
 
-		return message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		return message.content.slice(prefix.length).trim().split(/ +/g);
 
 	},
 
@@ -74,6 +75,5 @@ module.exports = {
 
 		return argsMap;
 	}
-
 	
 };

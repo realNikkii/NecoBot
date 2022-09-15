@@ -1,11 +1,11 @@
-require('dotenv').config();
+const { tenorKey } = require('../../../config.json');
 
 const Tenor = require('tenorjs').client({
-	'Key': process.env.TENOR_KEY,
+	'Key': tenorKey,
 	'Filter': 'off',
 	'Locale': 'en_US',
 	'MediaFilter': 'minimal',
-	'DateFormat': 'D/MM/YYYY - H:mm:ss A',
+	'DateFormat': 'D/MM/YYYY - H:mm:ss A'
 });
 
 module.exports = {
@@ -22,5 +22,5 @@ module.exports = {
 				message.channel.send(Post.itemurl);
 			});
 		});
-	},
+	}
 };

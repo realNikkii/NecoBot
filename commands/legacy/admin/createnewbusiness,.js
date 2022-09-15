@@ -1,6 +1,5 @@
 const profileModel = require('../../../models/businessSchema');
-
-require('dotenv').config();
+const { prefix } = require('../../../config.json')
 
 module.exports = {
     name: 'createnewbusiness',
@@ -12,7 +11,7 @@ module.exports = {
 
         console.log('Going into createnewbusiness.js');
 
-        const args = message.content.substring('"').slice(process.env.PREFIX.length).trim().split(/ +/g);
+        const args = message.content.substring('"').slice(prefix.length).trim().split(/ +/g);
 
 
         const companyName = message.content.substring(

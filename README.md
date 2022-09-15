@@ -9,7 +9,7 @@ Next, get Node.js by downloading it from [here](https://nodejs.org/en/), afterwa
 ```
 npm install discord.js
 ```
-Eventually, you will have to configure all of the environment variables used in the code, so that they match yours.
+Eventually, you will have to configure all of the config.json variables used in the code, so that they match yours.
 
 Burunyu.
 

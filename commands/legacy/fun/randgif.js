@@ -1,14 +1,14 @@
-require('dotenv').config();
-const { invalidCommandUsage } = require('../../../handlers/errorHandler')
+const { tenorKey } = require('../../../config.json');
+const { invalidCommandUsage } = require('../../../handlers/errorHandler');
 
 const { MessageEmbed } = require('discord.js');
 
 const Tenor = require('tenorjs').client({
-	'Key': process.env.TENOR_KEY,
+	'Key': tenorKey,
 	'Filter': 'off',
 	'Locale': 'en_US',
 	'MediaFilter': 'minimal',
-	'DateFormat': 'D/MM/YYYY - H:mm:ss A',
+	'DateFormat': 'D/MM/YYYY - H:mm:ss A'
 });
 
 module.exports = {
@@ -20,7 +20,8 @@ module.exports = {
 	async execute(message, _client, _commandObject, command) {
 		console.log('Going into randgif.js');
 
-		const query = message.content.slice(command.length + 3);
+		const messageStartIndex = 3;
+		const query = message.content.slice(command.length + messageStartIndex);
 
 		if (!query) return invalidCommandUsage(message, this.name, this.usage);
 
@@ -35,5 +36,5 @@ module.exports = {
 				message.reply({ embeds: [randGifEmbed] });
 			});
 		});
-	},
+	}
 };
