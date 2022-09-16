@@ -8,8 +8,8 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 client.noDb = false;
 
-[ 'connectDBHandler', 'legacyCommandHandler', 'eventHandler' ].forEach(handler => { 
+[ 'connectDBHandler', 'legacyCommandHandler', 'slashCommandHandler' , 'eventHandler' ].forEach(handler => { 
 	require(`./handlers/${handler}`)(client);
 });
 
-client.login(token); 
+client.login(token);

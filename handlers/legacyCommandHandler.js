@@ -1,9 +1,9 @@
 const { readdirSync } = require('fs');
 const path = require('path');
 
-module.exports = (client) => {
+module.exports = client => {
 
-	console.log('Going into commandCollection');
+	console.log('Going into legacyCommandCollection');
 
 	const loadCommandDirs = (dirs) => {
 
@@ -21,7 +21,7 @@ module.exports = (client) => {
 			}
 		}
 
-		console.log(`Done with collection for directory ${dirs}`);
+		console.log(`Done with collection for directory ${dirs} legacy`);
 	};
 
 	const getLegacyCommandDirectories = source =>

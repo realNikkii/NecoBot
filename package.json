@@ -4,7 +4,8 @@
   "description": "Burunyu!",
   "main": "index.js",
   "scripts": {
-    "runBot": "node index.js"
+    "runBot": "node index.js",
+    "refresh": "node deploySlashCommands.js"
   },
   "author": "Nikki",
   "license": "ISC",

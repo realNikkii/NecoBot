@@ -1,11 +1,11 @@
-const fs = require('fs');
+const { readdirSync } = require('fs');
 const path = require('path');
 
 module.exports = (client, Discord) => {
 	console.log('Going into eventCollection.js');
 	const loadEventDirs = (dirs) => {
 
-		const eventFiles = fs.readdirSync(path.join(__dirname, `../events/${dirs}`)).filter(file => file.endsWith('.js'));
+		const eventFiles = readdirSync(path.join(__dirname, `../events/${dirs}`)).filter(file => file.endsWith('.js'));
 
 		for (const file of eventFiles) {
 
@@ -19,6 +19,11 @@ module.exports = (client, Discord) => {
 
 	};
 
-	['client', 'guild'].forEach(e => loadEventDirs(e));
+	const getEventDirectories = source =>
+	readdirSync(source, { withFileTypes: true })
+		.filter(dirent => dirent.isDirectory())
+		.map(dirent => dirent.name);
+
+	getEventDirectories(path.join(__dirname, `../events`)).forEach(d => loadEventDirs(d));
 
 };
