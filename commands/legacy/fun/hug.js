@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { getArguements } = require('../../../functions');
 const { tenorKey } = require('../../../config.json');
 
 const Tenor = require('tenorjs').client({
@@ -31,5 +30,5 @@ module.exports = {
 				message.channel.send({ embeds: [hugEmbed] });
 			});
 		});
-	},
+	}
 };

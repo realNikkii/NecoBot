@@ -8,7 +8,7 @@ module.exports = {
                     option.setName('text')
                             .setDescription('Text the bot should say.')
                             .setRequired(true);
-                    return option
+                    return option;
                 }),
     cooldown: 0,
     async execute(interaction) {

@@ -13,13 +13,13 @@ module.exports = {
 
     },
 
-    commandError(commandMessage, errorDescription, commandName){
+    commandError(recipient, errorDescription, commandName){
 
         const errorEmbed = new MessageEmbed()
             .setColor('RED')
             .setTitle(`⚠️ Error while using ${commandName}, nya nya nya.`)
             .setDescription(errorDescription)
 
-        commandMessage.reply({ embeds: [errorEmbed]});
+        recipient.reply({ embeds: [errorEmbed]});
     }
 }

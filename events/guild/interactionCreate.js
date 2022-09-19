@@ -27,7 +27,12 @@ module.exports = {
 
             }
             // TODO: Refactor coooldownCheck to work with slash commands
-            commandObject.execute(interaction);
+
+            try {
+                commandObject.execute(interaction);
+            } catch (err) {
+                return commandError(interaction, err.message, interaction.commandName)
+            }
         }
     }
 }

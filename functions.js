@@ -12,7 +12,7 @@ module.exports = {
 				userID: discordUserID,
 				level: 1,
 				experience: 0,
-				necoCoins: 1000,
+				necoCoins: 1000
 			});
 
 			discordUserDBProfile = profile;
@@ -23,7 +23,8 @@ module.exports = {
 	},
 	cooldownCheck(client, message, commandObject, commandString) {
 
-		const commandOnCooldownID = `${message.author.id}.${commandObject.name}`; // Unique string consisting of the users discord id and command name, seperated by a dot
+		// Unique string consisting of the users discord id and command name, seperated by a dot
+		const commandOnCooldownID = `${message.author.id}.${commandObject.name}`;
 
 		if (!client.userCooldowns.has(commandOnCooldownID)) {
 
@@ -47,6 +48,19 @@ module.exports = {
 			message.reply(`You need to wait ${commandObject.cooldown} seconds to execute ${commandObject.name}, bibibi...`);
 
 		}
+	},
+
+	evaluateSlashCommandOnCooldown(client, interaction) {
+
+		const commandOnCooldownId = `${interaction.user.id}.{interaction.commandName}`;
+
+		if (!client.userCooldowns.has(commandOnCooldownId)) {
+			
+			return false;
+			
+		}
+
+
 	},
 
 	getArguments(message) {

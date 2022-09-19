@@ -9,8 +9,8 @@ module.exports = {
 
 		if (headOrTails === 0) {
 			message.channel.send('It landed on... heads! Nya! :coin:');
-		}
-		else if (headOrTails === 1) {
+		} else {
+
 			message.channel.send('It landed on... tails! Nya! :coin:');
 		}
 	}

@@ -1,28 +1,30 @@
 const { CSE_ID, googleKey } = require('../../../config.json');
-const { invalidCommandUsage } = require('../../../handlers/errorHandler');
-const imageSearch = require('image-search-google');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const imageSearch = require('image-search-google');
 const googleClient = new imageSearch(CSE_ID, googleKey);
 
 module.exports = {
-	name: 'image',
-	description: 'Searches in Google with the input of the user.',
-	aliases: 'img',
-	usage: '`b!image <query>`',
+	data: new SlashCommandBuilder()
+                .setName('image')
+                .setDescription('Search for something via google image search.')
+                .addStringOption(option =>{
+                    option.setName('query')
+                            .setDescription('Search query.')
+                            .setRequired(true);
+                    return option;
+                }),
 	cooldown: 0,
-	async execute(message, __client, _commandObject, command) {
+	async execute(interaction) {
 
 		console.log('Going into image.js');
 
 		let imageIndex = 0;
-		const messageStartIndex = 3;
-		const query = message.content.slice(command.length + messageStartIndex);
-
-		if (!query) return invalidCommandUsage(message, this.name, this.usage);
+		const query = interaction.options.getString('query');
 
 		googleClient.search(query).then(async images => {
 			// TODO: Add buttons that show the next image on the page, and one to go to a previous image
-			if (!images[0]) return message.reply('No search results found!');
+			if (!images[0]) return interaction.reply('No search results found!', { ephemeral: true });
 
 			const googleSearchEmbed = new MessageEmbed()
 				.setColor('RANDOM')
@@ -49,17 +51,14 @@ module.exports = {
 
 			if (googleSearchEmbed.description === images[0].context) googleSearchActionRow.components[0].setDisabled(true);
 
-			const originMessage = await message.reply({fetchReply: true, embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
-
-			console.log(originMessage);
-
-			const timeOutMs = 500;
+			const originMessage = await interaction.reply({fetchReply: true, embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
 			const searchButtonCollector = originMessage.createMessageComponentCollector({ componentType: 'BUTTON', time: 10000});
+
 			searchButtonCollector.on('collect', async button => {
 
 				searchButtonCollector.resetTimer();
 
-				if (button.user.id !== message.author.id) return;
+				if (button.user.id !== interaction.user.id) return;
 
 				switch(button.customId){
 
@@ -95,7 +94,7 @@ module.exports = {
 					await originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
 
 				// 500 indicates timeout in ms
-				}, timeOutMs);
+				}, 500);
 
 				searchButtonCollector.on('end', () => {
 
