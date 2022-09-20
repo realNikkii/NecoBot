@@ -52,14 +52,34 @@ module.exports = {
 
 	evaluateSlashCommandOnCooldown(client, interaction) {
 
-		const commandOnCooldownId = `${interaction.user.id}.{interaction.commandName}`;
+		console.log('got into evaluate')
 
-		if (!client.userCooldowns.has(commandOnCooldownId)) {
+		const msToSecondMult = 1000;
+		const commandOnCooldownId = `${interaction.user.id}.${interaction.commandName}`;
+
+		if (!client.userCooldowns.has(commandOnCooldownId) 
+				&& interaction.cooldown > 0) {
+
+				client.userCooldowns.add(commandOnCooldownId);
+
+				setTimeout(() => {
+
+					client.userCooldowns.delete();
+					
+
+				}, interaction.cooldown * msToSecondMult);
+
+				console.log('Over timeout');
+
+				return true;
 			
+		} else {
+
+			interaction.reply({ content: `You need to wait ${interaction.cooldown} seconds before you can execzte ${interaction.commandName}, bibibi...`,
+								ephemeral: true });
 			return false;
-			
-		}
 
+		}
 
 	},
 

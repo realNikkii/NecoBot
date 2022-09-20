@@ -1,4 +1,4 @@
-const { checkDBProfileExists, passCLIArgs, cooldownCheck, getArguments } = require('../../functions');
+const { checkDBProfileExists, passCLIArgs, evaluateSlashCommandOnCooldown } = require('../../functions');
 const { commandError } = require('../../handlers/errorHandler');
 const { admin } = require('../../config.json');
 
@@ -24,14 +24,13 @@ module.exports = {
             if (commandObject.dbReq && client.noDb) {
 
                 return interaction.reply(
-                    { content:'Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!', ephemeral: true });
+                    { content: 'Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!', ephemeral: true });
 
             }
-            // TODO: Refactor coooldownCheck to work with slash commands
 
             try {
 
-                commandObject.execute(interaction);
+                if (!evaluateSlashCommandOnCooldown(client, interaction)) commandObject.execute(interaction);
 
             } catch (err) {
 

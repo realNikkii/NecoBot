@@ -4,7 +4,6 @@ const { token } = require('./config.json');
 
 const currentTime = new Date().getTime();
 
-
 client.userCooldowns = new Set(); 
 client.aliases = new Collection();
 client.commands = new Collection();

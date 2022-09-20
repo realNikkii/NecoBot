@@ -11,7 +11,7 @@ module.exports = {
 	async execute(message) {
 
 		const mentionedUser = message.mentions.members.first();
-		const giveAmount = Number.parseInt(message.content.substring(message.content.indexOf('>') + 1));
+		const giveAmount = Number.parseInt(message.content.substring(message.content.indexOf('>') + 1), 10);
 
 		if (!mentionedUser || !giveAmount || Math.sign(giveAmount) == -1 || typeof giveAmount != 'number') return invalidCommandUsage(message, this.name, this.usage);
 
@@ -43,5 +43,5 @@ module.exports = {
 
 		message.reply(`You gave ${mentionedUser.user.username} ${giveAmount} necoCoins!`);
 
-	},
+	}
 };
