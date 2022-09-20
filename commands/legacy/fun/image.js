@@ -50,9 +50,6 @@ module.exports = {
 			if (googleSearchEmbed.description === images[0].context) googleSearchActionRow.components[0].setDisabled(true);
 
 			const originMessage = await message.reply({fetchReply: true, embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
-
-			console.log(originMessage);
-
 			const timeOutMs = 500;
 			const searchButtonCollector = originMessage.createMessageComponentCollector({ componentType: 'BUTTON', time: 10000});
 			searchButtonCollector.on('collect', async button => {

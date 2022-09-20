@@ -14,7 +14,7 @@ module.exports = {
                             .setRequired(true);
                     return option;
                 }),
-	cooldown: 0,
+	cooldown: 2,
 	async execute(interaction) {
 
 		console.log('Going into image.js');
@@ -24,7 +24,7 @@ module.exports = {
 
 		googleClient.search(query).then(async images => {
 			// TODO: Add buttons that show the next image on the page, and one to go to a previous image
-			if (!images[0]) return interaction.reply('No search results found!', { ephemeral: true });
+			if (!images[0]) return interaction.reply({ content: 'No search results found!', ephemeral: true });
 
 			const googleSearchEmbed = new MessageEmbed()
 				.setColor('RANDOM')
@@ -51,6 +51,7 @@ module.exports = {
 
 			if (googleSearchEmbed.description === images[0].context) googleSearchActionRow.components[0].setDisabled(true);
 
+			const timeOutMs = 500;
 			const originMessage = await interaction.reply({fetchReply: true, embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
 			const searchButtonCollector = originMessage.createMessageComponentCollector({ componentType: 'BUTTON', time: 10000});
 
@@ -93,8 +94,7 @@ module.exports = {
 					await button.deferUpdate();
 					await originMessage.edit({ embeds: [googleSearchEmbed], components: [googleSearchActionRow] });
 
-				// 500 indicates timeout in ms
-				}, 500);
+				}, timeOutMs);
 
 				searchButtonCollector.on('end', () => {
 

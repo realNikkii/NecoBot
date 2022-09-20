@@ -11,7 +11,7 @@ module.exports = {
             const cliArgs = passCLIArgs();
 		    const runType = cliArgs.get('runType');
 
-            if (runType === 'admin' && interaction.user !== admin) return await interaction
+            if (runType === 'admin' && interaction.user !== admin) return interaction
                                                                     .reply({content: 'Bot is currently in admin mode!' + 
                                                                     'Try again later... nya...', ephemeral: true});
 
@@ -23,15 +23,20 @@ module.exports = {
 
             if (commandObject.dbReq && client.noDb) {
 
-                return await interaction.reply('Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!');
+                return interaction.reply(
+                    { content:'Bueh! Need a database connection, unfortunately there is none right now... try again later! Nya!', ephemeral: true });
 
             }
             // TODO: Refactor coooldownCheck to work with slash commands
 
             try {
+
                 commandObject.execute(interaction);
+
             } catch (err) {
-                return commandError(interaction, err.message, interaction.commandName)
+
+                return commandError(interaction, err.message, interaction.commandName);
+                
             }
         }
     }
