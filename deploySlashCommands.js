@@ -8,7 +8,7 @@ const { readdirSync } = require('fs');
 
     const commandsJson = [];
 
-	const loadCommandDirs = (dirs) => {
+	const loadCommandDirs = dirs => {
 
 		const commandFiles = readdirSync(path.join(__dirname, `./commands/slash/${dirs}`)).filter(file => file.endsWith('.js'));
 
